@@ -1,11 +1,16 @@
-// config/db.js
 const { Sequelize } = require('sequelize');
+require('dotenv').config();
 
-// Create a new Sequelize instance with SQLite
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: './database.sqlite', // database file will be created here
-  logging: false                // disable SQL logging in console
-});
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASS,
+  {
+    host: process.env.DB_HOST,
+    dialect: 'postgres',
+    port: process.env.DB_PORT,
+    logging: false
+  }
+);
 
 module.exports = sequelize;

@@ -28,9 +28,8 @@ app.use((req, res, next) => {
 
 // Test route
 app.get('/', (req, res) => {
-  res.send('SQLite backend is running!');
+  res.send('PostgreSQL backend is running!');
 });
-
 // API routes
 app.use('/api/contacts', contactRoutes);
 app.use('/api/auth', authRoutes);
@@ -38,7 +37,7 @@ app.use('/api/auth', authRoutes);
 // Sync DB and start server
 sequelize.sync({ alter: true }) // alter:true keeps schema updated
   .then(() => {
-    console.log('Database connected and tables created');
+    console.log('Database connected successfull');
     app.listen(3000, () => console.log('Server running on port 3000'));
   })
   .catch(err => console.error('DB connection error:', err));
