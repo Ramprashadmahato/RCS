@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import emailjs from '@emailjs/browser';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default function Contact() {
   const [openFAQ, setOpenFAQ] = useState(null);
@@ -26,7 +27,7 @@ export default function Contact() {
   const toggleFAQ = (index) => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
-  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -34,24 +35,24 @@ export default function Contact() {
       [name]: value
     }));
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // First save to database
     try {
-      const response = await axios.post('http://localhost:3000/api/contacts', {
+      const response = await axios.post(`${API_BASE_URL}/api/contacts`, {
         name: formData.name,
         email: formData.email,
         subject: formData.subject,
         message: formData.message
       });
-      
+
       // If saved successfully, send email via EmailJS
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-      
+
       if (serviceId && templateId && publicKey) {
         const templateParams = {
           name: formData.name,
@@ -60,7 +61,7 @@ export default function Contact() {
           message: formData.message,
           reply_to: formData.email
         };
-        
+
         try {
           await emailjs.send(serviceId, templateId, templateParams, publicKey);
         } catch (emailError) {
@@ -68,7 +69,7 @@ export default function Contact() {
           // Don't show error to user since database save was successful
         }
       }
-      
+
       // Show success message
       alert('Thank you for your message! We will get back to you soon.');
       setFormData({
@@ -88,7 +89,7 @@ export default function Contact() {
 
       {/* ================= TITLE ================= */}
       <section className="py-12 sm:py-16 text-center bg-linear-to-br from-gray-50 to-gray-100 px-4">
-        <motion.h1 
+        <motion.h1
           className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -97,7 +98,7 @@ export default function Contact() {
         >
           Get in Touch with Royal Consultancy Service
         </motion.h1>
-        <motion.p 
+        <motion.p
           className="text-gray-700 text-base sm:text-lg max-w-xs sm:max-w-md md:max-w-xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -111,7 +112,7 @@ export default function Contact() {
       {/* ================= CONTACT FORM ================= */}
       <section className="py-12 sm:py-16 bg-white">
         <div className="container mx-auto px-4 max-w-2xl sm:max-w-3xl">
-          <motion.h2 
+          <motion.h2
             className="text-center text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -121,7 +122,7 @@ export default function Contact() {
             Send Us a Message
           </motion.h2>
 
-          <motion.div 
+          <motion.div
             className="p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 bg-linear-to-br from-gray-50 to-white"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -209,7 +210,7 @@ export default function Contact() {
           <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
 
             {/* GOOGLE MAP */}
-            <motion.div 
+            <motion.div
               className="rounded-2xl shadow-lg overflow-hidden h-64 sm:h-80 md:col-span-2"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -225,7 +226,7 @@ export default function Contact() {
             </motion.div>
 
             {/* CONTACT DETAILS */}
-            <motion.div 
+            <motion.div
               className="bg-linear-to-br from-[#111111] to-[#222222] text-white p-6 sm:p-8 rounded-2xl shadow-lg mt-6 sm:mt-8 md:mt-0"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -289,7 +290,7 @@ export default function Contact() {
       {/* ================= FAQ ================= */}
       <section className="py-12 sm:py-16 bg-linear-to-br from-gray-50 to-gray-100">
         <div className="container mx-auto px-4 max-w-xl sm:max-w-2xl">
-          <motion.h2 
+          <motion.h2
             className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-3 sm:mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -298,7 +299,7 @@ export default function Contact() {
           >
             Frequently Asked Questions
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-gray-600 text-center mb-6 sm:mb-10 text-sm sm:text-base"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -308,7 +309,7 @@ export default function Contact() {
             Here are some of the most common questions we receive
           </motion.p>
 
-          <motion.div 
+          <motion.div
             className="space-y-3 sm:space-y-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -322,8 +323,8 @@ export default function Contact() {
               "Which industries do you serve?",
               "How do you protect data?",
             ].map((question, index) => (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -336,14 +337,13 @@ export default function Contact() {
                 >
                   <span className="font-bold text-gray-900">{question}</span>
                   <ChevronDown
-                    className={`transition-transform duration-300 ${
-                      openFAQ === index ? "rotate-180 text-[#C6A667]" : "text-gray-500"
-                    }`}
+                    className={`transition-transform duration-300 ${openFAQ === index ? "rotate-180 text-[#C6A667]" : "text-gray-500"
+                      }`}
                   />
                 </button>
 
                 {openFAQ === index && (
-                  <motion.div 
+                  <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
@@ -362,8 +362,8 @@ export default function Contact() {
       </section>
 
       {/* ================= CTA ================= */}
-  
-<section className="py-8 text-center bg-linear-to-r from-[#2c3e50] to-[#34495e] text-white w-[50%] mx-auto rounded-xl">
+
+      <section className="py-8 text-center bg-linear-to-r from-[#2c3e50] to-[#34495e] text-white w-[50%] mx-auto rounded-xl">
 
         <motion.div
           className="container mx-auto px-4"
@@ -372,7 +372,7 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <motion.h2 
+          <motion.h2
             className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -381,7 +381,7 @@ export default function Contact() {
           >
             Ready to Discuss Your Project?
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-gray-300 text-base sm:text-lg max-w-xs sm:max-w-md md:max-w-xl mx-auto mb-6 sm:mb-8"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
