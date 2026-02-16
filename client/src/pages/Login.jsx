@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import apiClient from "../api/axiosConfig";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -35,7 +35,7 @@ function Login({ setToken }) {
     setError("");
     
     try {
-      const response = await axios.post("/api/auth/login", {
+      const response = await apiClient.post("/api/auth/login", {
         username: formData.username,
         password: formData.password
       });

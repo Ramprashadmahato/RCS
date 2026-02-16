@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import apiClient from "../api/axiosConfig";
 import { ChevronDown, Mail, Phone, MapPin, Send } from "lucide-react";
 import {
   FaMapMarkerAlt,
@@ -13,7 +13,6 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import emailjs from '@emailjs/browser';
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default function Contact() {
   const [openFAQ, setOpenFAQ] = useState(null);
@@ -41,7 +40,7 @@ export default function Contact() {
 
     // First save to database
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/contacts`, {
+      const response = await apiClient.post("/api/contacts", {
         name: formData.name,
         email: formData.email,
         subject: formData.subject,

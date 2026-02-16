@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import apiClient from "../api/axiosConfig";
 import { motion } from "framer-motion";
 import { Key, Eye, EyeOff, CheckCircle, AlertCircle } from "lucide-react";
 import AdminLayout from "../components/AdminLayout";
@@ -57,11 +57,9 @@ function ChangePassword({ token, onLogout }) {
     setSuccess("");
     
     try {
-      await axios.post("/api/auth/change-password", {
+      await apiClient.post("/api/auth/change-password", {
         oldPassword: formData.oldPassword,
         newPassword: formData.newPassword
-      }, {
-        headers: { Authorization: `Bearer ${token}` }
       });
       
       setSuccess("Password changed successfully!");

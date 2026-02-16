@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import apiClient from "../api/axiosConfig";
 import { motion } from "framer-motion";
 import { Mail, Trash2, Reply, Calendar, User, Search, AlertCircle } from "lucide-react";
 import AdminLayout from "../components/AdminLayout";
@@ -23,9 +23,7 @@ function ManageContacts({ token, onLogout }) {
   const fetchContacts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("/api/contacts", {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const response = await apiClient.get("/api/contacts");
       setContacts(response.data);
     } catch (err) {
       setError(err.response?.data?.error || "Failed to fetch contacts");
@@ -38,9 +36,7 @@ function ManageContacts({ token, onLogout }) {
     if (!window.confirm("Are you sure you want to delete this contact?")) return;
     
     try {
-      await axios.delete(`/api/contacts/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      await apiClient.delete(`/api/contacts/${id}`);
       setContacts(contacts.filter(c => c.id !== id));
       alert("Contact deleted successfully!");
     } catch (err) {
@@ -75,12 +71,10 @@ Royal Consultancy Services Team`,
     e.preventDefault();
     
     try {
-      await axios.post("/api/contacts/reply", {
+      await apiClient.post("/api/contacts/reply", {
         to: replyData.email,
         subject: replyData.subject,
         message: replyData.message
-      }, {
-        headers: { Authorization: `Bearer ${token}` }
       });
       
       alert("Reply sent successfully!");
