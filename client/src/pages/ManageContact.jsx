@@ -79,8 +79,12 @@ Royal Consultancy Services Team`,
       
       alert("Reply sent successfully!");
       closeReplyModal();
+      // Refresh contacts after successful reply
+      fetchContacts();
     } catch (err) {
-      alert(err.response?.data?.error || "Failed to send reply");
+      const errorMsg = err.response?.data?.error || err.message || "Failed to send reply";
+      console.error('Reply error:', errorMsg);
+      alert(`Failed to send reply: ${errorMsg}`);
     }
   };
 
