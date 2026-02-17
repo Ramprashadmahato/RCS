@@ -10,7 +10,7 @@ export default function About() {
       {/* ================= Mission & Vision ================= */}
       <section className="py-12 sm:py-16 bg-gradient-to-br from-gray-50 to-gray-100">
         <div className="container mx-auto px-4 text-center max-w-2xl sm:max-w-3xl">
-          <motion.h2 
+          <motion.h2
             className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -20,7 +20,7 @@ export default function About() {
             Our Mission & Vision
           </motion.h2>
 
-          <motion.p 
+          <motion.p
             className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -33,7 +33,7 @@ export default function About() {
             digital presence, and accelerate growth.
           </motion.p>
 
-          <motion.p 
+          <motion.p
             className="text-gray-700 text-base sm:text-lg leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export default function About() {
       {/* ================= Expert Team ================= */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 text-center">
-          <motion.h2 
+          <motion.h2
             className="text-4xl font-bold text-gray-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -122,10 +122,10 @@ export default function About() {
       </section>
 
       {/* ================= Guiding Principles ================= */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="container mx-auto px-4 text-center">
-          <motion.h2 
-            className="text-4xl font-bold text-gray-900 mb-6"
+      <section className="py-12 sm:py-16 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
+          <motion.h2
+            className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 sm:mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -134,72 +134,72 @@ export default function About() {
             Our Guiding Principles
           </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mt-10 sm:mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mt-8 sm:mt-10 md:mt-12">
 
-            <motion.div 
-              className="p-8 bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center text-center"
+            <motion.div
+              className="p-6 sm:p-8 bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center text-center h-full"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+              whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
             >
-              <div className="w-16 h-16 bg-[#C6A667]/10 rounded-full flex items-center justify-center mb-4">
-                <Lightbulb className="text-[#C6A667] w-8 h-8" />
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#C6A667]/10 rounded-full flex items-center justify-center mb-4 flex-shrink-0">
+                <Lightbulb className="text-[#C6A667] w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Innovation</h4>
-              <p className="text-gray-600">
+              <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Innovation</h4>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                 We embrace creativity to deliver impactful digital products.
               </p>
             </motion.div>
 
-            <motion.div 
-              className="p-8 bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center text-center"
+            <motion.div
+              className="p-6 sm:p-8 bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center text-center h-full"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+              whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
             >
-              <div className="w-16 h-16 bg-[#C6A667]/10 rounded-full flex items-center justify-center mb-4">
-                <Users className="text-[#C6A667] w-8 h-8" />
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#C6A667]/10 rounded-full flex items-center justify-center mb-4 flex-shrink-0">
+                <Users className="text-[#C6A667] w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Collaboration</h4>
-              <p className="text-gray-600">
+              <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Collaboration</h4>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                 We work collaboratively with transparency and empathy.
               </p>
             </motion.div>
 
-            <motion.div 
-              className="p-8 bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center text-center"
+            <motion.div
+              className="p-6 sm:p-8 bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center text-center h-full"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+              whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
             >
-              <div className="w-16 h-16 bg-[#C6A667]/10 rounded-full flex items-center justify-center mb-4">
-                <ShieldCheck className="text-[#C6A667] w-8 h-8" />
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#C6A667]/10 rounded-full flex items-center justify-center mb-4 flex-shrink-0">
+                <ShieldCheck className="text-[#C6A667] w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Integrity</h4>
-              <p className="text-gray-600">
+              <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Integrity</h4>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                 We follow ethical practices in every solution and service.
               </p>
             </motion.div>
 
-            <motion.div 
-              className="p-8 bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center text-center"
+            <motion.div
+              className="p-6 sm:p-8 bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center text-center h-full"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+              whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
             >
-              <div className="w-16 h-16 bg-[#C6A667]/10 rounded-full flex items-center justify-center mb-4">
-                <Star className="text-[#C6A667] w-8 h-8" />
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#C6A667]/10 rounded-full flex items-center justify-center mb-4 flex-shrink-0">
+                <Star className="text-[#C6A667] w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Excellence</h4>
-              <p className="text-gray-600">
+              <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Excellence</h4>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                 We ensure top‑quality, performance, and reliability.
               </p>
             </motion.div>
@@ -207,12 +207,12 @@ export default function About() {
           </div>
         </div>
       </section>
-
       {/* ================= Journey & Milestones ================= */}
       <section className="py-12 sm:py-16 bg-white">
         <div className="container mx-auto px-4 text-center max-w-2xl sm:max-w-3xl">
-          <motion.h2 
-            className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6"
+
+          <motion.h2
+            className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -221,40 +221,90 @@ export default function About() {
             Our Journey & Milestones
           </motion.h2>
 
-          <div className="mt-8 sm:mt-12 relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#C6A667] to-[#a88c4f] hidden md:block"></div>
-            {[
+          <div className="relative mt-10">
 
-              { year: "2016", text: "Foundation & Vision — Royal Consultancy Services was founded to empower businesses with modern digital solutions." },
-              { year: "2018", text: "Major Milestones — Expanded our global reach and delivered multiple enterprise‑level software projects." },
-              { year: "2020", text: "Technological Expansion — Adopted cloud, AI automation, and scalable architecture models." },
-              { year: "2022", text: "Strategic Partnerships — Formed collaborations with major tech companies for digital innovation." },
-              { year: "2024", text: "Innovation Recognition — Recognized as a top emerging digital solutions provider." },
-            ].map((item, index) => (
-              <motion.div 
-                key={index} 
-                className={`flex flex-col md:flex-row items-center gap-6 mb-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-              >
-                <div className="relative flex-shrink-0">
-                  <div className="w-4 h-4 bg-[#C6A667] rounded-full z-10 relative"></div>
-                  <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#C6A667]/10 animate-ping"></div>
-                </div>
-                <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 flex-1 max-w-md">
-                  <div className="text-[#C6A667] font-bold text-lg mb-2">{item.year}</div>
-                  <p className="text-gray-700">
-                    {item.text}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+            {/* Timeline Line */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#C6A667] to-[#a88c4f] hidden md:block"></div>
+
+            {[
+              {
+                year: "2016",
+                text: "Foundation & Vision — Royal Consultancy Services was founded to empower businesses.",
+              },
+              {
+                year: "2018",
+                text: "Major Milestones — Expanded global reach and delivered enterprise software projects.",
+              },
+              {
+                year: "2020",
+                text: "Technological Expansion — Adopted cloud and AI automation.",
+              },
+              {
+                year: "2022",
+                text: "Strategic Partnerships — Collaborations with major tech companies.",
+              },
+              {
+                year: "2024",
+                text: "Innovation Recognition — Top emerging digital solutions provider.",
+              },
+            ].map((item, index) => {
+
+              const isLeft = index % 2 === 0;
+
+              return (
+                <motion.div
+                  key={index}
+                  className="relative flex flex-col md:flex-row items-center md:items-start justify-between mb-12"
+                  initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                >
+
+                  {/* LEFT SIDE */}
+                  <div className={`hidden md:block md:w-5/12 ${isLeft ? "text-right pr-10" : ""}`}>
+                    {isLeft && (
+                      <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                        <div className="text-[#C6A667] font-bold text-lg mb-2">{item.year}</div>
+                        <p className="text-gray-700">{item.text}</p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* CENTER DOT */}
+                  <div className="relative z-10 flex items-center justify-center">
+                    <div className="w-4 h-4 bg-[#C6A667] rounded-full"></div>
+                    <div className="absolute w-12 h-12 bg-[#C6A667]/10 rounded-full animate-ping"></div>
+                  </div>
+
+                  {/* RIGHT SIDE */}
+                  <div className={`md:w-5/12 ${!isLeft ? "pl-10" : ""}`}>
+
+                    {/* Mobile Always Visible */}
+                    <div className="md:hidden bg-white p-6 rounded-2xl shadow-lg border border-gray-100 text-left">
+                      <div className="text-[#C6A667] font-bold text-lg mb-2">{item.year}</div>
+                      <p className="text-gray-700">{item.text}</p>
+                    </div>
+
+                    {/* Desktop Right */}
+                    {!isLeft && (
+                      <div className="hidden md:block bg-white p-6 rounded-2xl shadow-lg border border-gray-100 text-left">
+                        <div className="text-[#C6A667] font-bold text-lg mb-2">{item.year}</div>
+                        <p className="text-gray-700">{item.text}</p>
+                      </div>
+                    )}
+
+                  </div>
+
+                </motion.div>
+              );
+            })}
 
           </div>
         </div>
       </section>
+
+
 
       {/* ================= CTA ================= */}
       <section className="py-16 text-center bg-gradient-to-r from-[#2c3e50] to-[#1a2530] text-white">
@@ -265,7 +315,7 @@ export default function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <motion.h2 
+          <motion.h2
             className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -274,7 +324,7 @@ export default function About() {
           >
             Ready to Transform Your Business?
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-gray-300 text-base sm:text-lg max-w-xs sm:max-w-md md:max-w-xl mx-auto mb-6 sm:mb-8"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}

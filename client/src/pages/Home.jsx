@@ -2,6 +2,33 @@ import React from "react";
 import { motion } from "framer-motion";
 
 export default function Home() {
+  const [isInitialRender, setIsInitialRender] = React.useState(true);
+  
+  React.useEffect(() => {
+    // Reset animations when component mounts
+    setIsInitialRender(true);
+    
+    // Handle resize events to reset animations
+    const handleResize = () => {
+      setIsInitialRender(true);
+      // Small timeout to allow the animation to reset
+      setTimeout(() => setIsInitialRender(false), 50);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  React.useEffect(() => {
+    // Trigger animation on initial render
+    if (isInitialRender) {
+      const timer = setTimeout(() => {
+        setIsInitialRender(false);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isInitialRender]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -31,21 +58,23 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full bg-gradient-to-br from-gray-50 to-gray-100 mt-7">
+    <div className="w-full bg-gradient-to-br from-gray-50 to-gray-100 pt-8 pb-6">
 
       {/* ================= HERO SECTION ================= */}
-      <section className="w-full max-w-[1200px] mx-auto px-4 py-12 sm:py-16 md:py-20 flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-12 min-h-screen">
+<section className="w-full max-w-[1200px] mx-auto px-4 py-8 sm:py-12 md:py-20 flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-12 min-h-[80vh] md:min-h-screen relative">
+
+
+        {/* Decorative Elements - Positioned relatively to the section */}
+        <div className="hidden md:block absolute -top-6 -left-6 w-24 h-24 bg-[#C6A667]/10 rounded-full blur-xl z-0"></div>
+        <div className="hidden md:block absolute -bottom-6 -right-6 w-32 h-32 bg-[#a88c4f]/10 rounded-full blur-xl z-0"></div>
 
         {/* Left Content */}
         <motion.div 
-          className="w-full md:w-1/2 text-center md:text-left"
+          className="w-full md:w-1/2 text-center md:text-left relative z-10"
           variants={containerVariants}
-          initial="hidden"
+          initial={isInitialRender ? "hidden" : false}
           animate="visible"
         >
-          {/* Decorative Elements - Hidden on mobile */}
-          <div className="hidden md:block absolute -top-6 -left-6 w-24 h-24 bg-[#C6A667]/10 rounded-full blur-xl"></div>
-          <div className="hidden md:block absolute -bottom-6 -right-6 w-32 h-32 bg-[#a88c4f]/10 rounded-full blur-xl"></div>
 
           <motion.h1 
             className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-3 sm:mb-4"
@@ -75,12 +104,12 @@ export default function Home() {
           </motion.p>
 
           <motion.div 
-            className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+            className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center"
             variants={itemVariants}
           >
             <motion.a 
               href="/contact" 
-              className="bg-gradient-to-r from-[#C6A667] to-[#a88c4f] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:from-[#a88c4f] hover:to-[#8a7237] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base"
+              className="bg-gradient-to-r from-[#C6A667] to-[#a88c4f] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:from-[#a88c4f] hover:to-[#8a7237] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base whitespace-nowrap"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -88,7 +117,7 @@ export default function Home() {
             </motion.a>
             <motion.a 
               href="/about" 
-              className="border-2 border-[#C6A667] text-[#C6A667] px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-[#C6A667] hover:text-white transition-all duration-300 transform hover:-translate-y-1 text-sm sm:text-base"
+              className="border-2 border-[#C6A667] text-[#C6A667] px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-[#C6A667] hover:text-white transition-all duration-300 transform hover:-translate-y-1 text-sm sm:text-base whitespace-nowrap"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -100,17 +129,17 @@ export default function Home() {
         
         {/* Right Image */}
         <motion.div 
-          className="w-full md:w-1/2 flex justify-center"
+          className="w-full md:w-1/2 flex justify-center mt-8 md:mt-0"
           variants={imageVariants}
-          initial="hidden"
+          initial={isInitialRender ? "hidden" : false}
           animate="visible"
         >
-          <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md">
-            <div className="absolute inset-0 bg-[#C6A667] rounded-2xl transform rotate-6 opacity-20"></div>
+          <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+            <div className="absolute inset-0 bg-[#C6A667] rounded-2xl transform rotate-6 opacity-20 z-0"></div>
             <img
               src="/Hero.png"
               alt="Royal Consultancy Service Team"
-              className="relative rounded-2xl shadow-2xl w-full z-10"
+              className="relative rounded-2xl shadow-2xl w-full z-10 object-cover"
             />
           </div>
         </motion.div>
