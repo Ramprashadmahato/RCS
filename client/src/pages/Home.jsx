@@ -58,15 +58,15 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full bg-gradient-to-br from-gray-50 to-gray-100 pt-8 pb-6">
+    <div className="w-full bg-gradient-to-br from-gray-50 to-gray-100 pt-6 sm:pt-8 pb-6">
 
       {/* ================= HERO SECTION ================= */}
-<section className="w-full max-w-[1200px] mx-auto px-4 py-8 sm:py-12 md:py-20 flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-12 min-h-[80vh] md:min-h-screen relative">
+<section className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 py-10 sm:py-14 md:py-20 flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12 min-h-[500px] sm:min-h-[600px] md:min-h-[700px] relative">
 
 
         {/* Decorative Elements - Positioned relatively to the section */}
-        <div className="hidden md:block absolute -top-6 -left-6 w-24 h-24 bg-[#C6A667]/10 rounded-full blur-xl z-0"></div>
-        <div className="hidden md:block absolute -bottom-6 -right-6 w-32 h-32 bg-[#a88c4f]/10 rounded-full blur-xl z-0"></div>
+        <div className="hidden md:block absolute -top-4 -left-4 w-20 h-20 bg-[#C6A667]/10 rounded-full blur-xl z-0"></div>
+        <div className="hidden md:block absolute -bottom-4 -right-4 w-24 h-24 bg-[#a88c4f]/10 rounded-full blur-xl z-0"></div>
 
         {/* Left Content */}
         <motion.div 
@@ -77,7 +77,7 @@ export default function Home() {
         >
 
           <motion.h1 
-            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-3 sm:mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-3 sm:mb-4"
             variants={itemVariants}
           >
             <span className="text-[#111111]">Royal </span>
@@ -86,7 +86,7 @@ export default function Home() {
           </motion.h1>
 
           <motion.h2 
-            className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight mt-2 sm:mt-3"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mt-2 sm:mt-3"
             variants={itemVariants}
           >
             <span className="text-gray-700">Transform </span>
@@ -95,7 +95,7 @@ export default function Home() {
           </motion.h2>
 
           <motion.p 
-            className="mt-4 sm:mt-6 leading-relaxed text-gray-600 text-base sm:text-lg max-w-md sm:max-w-lg mx-auto md:mx-0"
+            className="mt-4 sm:mt-6 leading-relaxed text-gray-600 text-sm sm:text-base md:text-lg max-w-md sm:max-w-lg md:max-w-xl mx-auto md:mx-0"
             variants={itemVariants}
           >
             Royal Consultancy Service is a premier digital consultancy delivering innovative,
@@ -104,12 +104,12 @@ export default function Home() {
           </motion.p>
 
           <motion.div 
-            className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center"
+            className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start items-center"
             variants={itemVariants}
           >
             <motion.a 
               href="/contact" 
-              className="bg-gradient-to-r from-[#C6A667] to-[#a88c4f] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:from-[#a88c4f] hover:to-[#8a7237] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base whitespace-nowrap"
+              className="bg-gradient-to-r from-[#C6A667] to-[#a88c4f] text-white px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full font-semibold hover:from-[#a88c4f] hover:to-[#8a7237] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm md:text-base whitespace-nowrap"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -117,7 +117,7 @@ export default function Home() {
             </motion.a>
             <motion.a 
               href="/about" 
-              className="border-2 border-[#C6A667] text-[#C6A667] px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-[#C6A667] hover:text-white transition-all duration-300 transform hover:-translate-y-1 text-sm sm:text-base whitespace-nowrap"
+              className="border-2 border-[#C6A667] text-[#C6A667] px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full font-semibold hover:bg-[#C6A667] hover:text-white transition-all duration-300 transform hover:-translate-y-1 text-sm md:text-base whitespace-nowrap"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -129,17 +129,17 @@ export default function Home() {
         
         {/* Right Image */}
         <motion.div 
-          className="w-full md:w-1/2 flex justify-center mt-8 md:mt-0"
+          className="w-full md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0"
           variants={imageVariants}
           initial={isInitialRender ? "hidden" : false}
           animate="visible"
         >
-          <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+          <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md">
             <div className="absolute inset-0 bg-[#C6A667] rounded-2xl transform rotate-6 opacity-20 z-0"></div>
             <img
               src="/Hero.png"
               alt="Royal Consultancy Service Team"
-              className="relative rounded-2xl shadow-2xl w-full z-10 object-cover"
+              className="relative rounded-2xl shadow-2xl w-full h-auto max-h-[300px] sm:max-h-[350px] md:max-h-[400px] z-10 object-contain"
             />
           </div>
         </motion.div>
