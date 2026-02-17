@@ -226,7 +226,7 @@ export default function Contact() {
 
             {/* CONTACT DETAILS */}
             <motion.div
-              className="bg-linear-to-br from-[#111111] to-[#222222] text-white p-6 sm:p-8 rounded-2xl shadow-lg mt-6 sm:mt-8 md:mt-0"
+              className="bg-linear-to-br from-[#111111] to-[#222222]  text-white p-6 sm:p-8 rounded-2xl shadow-lg mt-6 sm:mt-8 md:mt-0"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -241,7 +241,7 @@ export default function Contact() {
                   <div className="mt-1 text-[#C6A667]">
                     <MapPin className="w-5 h-5" />
                   </div>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <p className="font-medium">Location</p>
                     <p className="text-gray-300">Narephat-32, Kathmandu</p>
                   </div>
@@ -251,7 +251,7 @@ export default function Contact() {
                   <div className="mt-1 text-[#C6A667]">
                     <Phone className="w-5 h-5" />
                   </div>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <p className="font-medium">Phone</p>
                     <p className="text-gray-300">+977 9741812381</p>
                   </div>
@@ -261,25 +261,41 @@ export default function Contact() {
                   <div className="mt-1 text-[#C6A667]">
                     <Mail className="w-5 h-5" />
                   </div>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <p className="font-medium">Email</p>
-                    <p className="text-gray-300">royalconsultancyservices24@gmail.com</p>
+                    <p className="text-gray-300 break-words">royalconsultancyservices24@gmail.com</p>
                   </div>
                 </div>
               </div>
 
               {/* SOCIAL LINKS */}
               <div className="flex gap-4 text-xl mt-8">
-                <a href="https://www.facebook.com/share/1DwAMCHRMC/" className="text-gray-300 hover:text-[#C6A667] transition">
+                <a
+                  href="https://www.facebook.com/share/1DwAMCHRMC/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-[#C6A667] transition"
+                >
                   <FaFacebook />
                 </a>
-                <a href="https://www.instagram.com/royal_consultancy_.services?igsh=azRwaHBsOG9yNzQ3" className="text-gray-300 hover:text-[#C6A667] transition">
+                <a
+                  href="https://www.instagram.com/royal_consultancy_.services?igsh=azRwaHBsOG9yNzQ3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-[#C6A667] transition"
+                >
                   <FaInstagram />
                 </a>
-                <a href="https://www.linkedin.com/company/royalconsultancyservices/" className="text-gray-300 hover:text-[#C6A667] transition">
+                <a
+                  href="https://www.linkedin.com/company/royalconsultancyservices/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-[#C6A667] transition"
+                >
                   <FaLinkedin />
                 </a>
               </div>
+
             </motion.div>
 
           </div>

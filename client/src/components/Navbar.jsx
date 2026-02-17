@@ -26,16 +26,16 @@ export default function Navbar() {
     };
 
     return (
-        <motion.nav 
+        <motion.nav
             className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg py-2' : 'bg-transparent py-4'}`}
             variants={navVariants}
             initial="hidden"
             animate="visible"
         >
-            <div className="container mx-auto flex items-center justify-between px-4">
+            <div className="w-full max-w-[1200px] mx-auto flex items-center justify-between px-4">
 
                 {/* Logo + Name */}
-                <motion.div 
+                <motion.div
                     className="flex items-center gap-3"
                     whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -70,7 +70,7 @@ export default function Navbar() {
                         <motion.li whileHover={{ y: -3 }}><Link to="/portfolio" className="hover:text-[#C6A667] transition-colors duration-300">Portfolio</Link></motion.li>
                         {/* <motion.li whileHover={{ y: -3 }}><Link to="/contact" className="hover:text-[#C6A667] transition-colors duration-300">Contact</Link></motion.li> */}
                     </motion.ul>
-                    
+
                     <motion.div
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -86,7 +86,7 @@ export default function Navbar() {
 
                 {/* Mobile Menu Button */}
                 <div className="md:hidden">
-                    <motion.button 
+                    <motion.button
                         className="text-gray-800 text-2xl"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         whileTap={{ scale: 0.9 }}
@@ -106,7 +106,7 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             {mobileMenuOpen && (
-                <motion.div 
+                <motion.div
                     className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg"
                     variants={mobileMenuVariants}
                     initial="closed"
@@ -117,7 +117,6 @@ export default function Navbar() {
                         <motion.li whileHover={{ scale: 1.05 }}><Link to="/about" className="block px-4 py-2 text-gray-700 hover:text-[#C6A667]" onClick={() => setMobileMenuOpen(false)}>About</Link></motion.li>
                         <motion.li whileHover={{ scale: 1.05 }}><Link to="/services" className="block px-4 py-2 text-gray-700 hover:text-[#C6A667]" onClick={() => setMobileMenuOpen(false)}>Services</Link></motion.li>
                         <motion.li whileHover={{ scale: 1.05 }}><Link to="/portfolio" className="block px-4 py-2 text-gray-700 hover:text-[#C6A667]" onClick={() => setMobileMenuOpen(false)}>Portfolio</Link></motion.li>
-                        <motion.li whileHover={{ scale: 1.05 }}><Link to="/contact" className="block px-4 py-2 text-gray-700 hover:text-[#C6A667]" onClick={() => setMobileMenuOpen(false)}>Contact</Link></motion.li>
                         <motion.li whileHover={{ scale: 1.05 }}>
                             <Link
                                 to="/contact"

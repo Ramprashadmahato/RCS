@@ -12,8 +12,8 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="bg-linear-to-br from-[#111111] to-[#222222] text-white  py-16 px-4">
-      <div className="container mx-auto grid gap-16 sm:gap-20 md:gap-16 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
+    <footer className="bg-gradient-to-br from-[#111111] to-[#222222] text-white py-12 px-4">
+      <div className="w-full max-w-300  mx-auto grid gap-8 sm:gap-10 md:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
 
         {/* ================= LOGO & ABOUT ================= */}
         <motion.div
@@ -57,10 +57,10 @@ export default function Footer() {
             Quick Links
           </h3>
           <ul className="space-y-2 sm:space-y-3 text-gray-400 text-sm sm:text-base">
-            {["Home","About Us","Services","Portfolio","Contact"].map((item, idx) => (
+            {["Home", "About Us", "Services", "Portfolio", "Contact"].map((item, idx) => (
               <li key={idx}>
                 <Link
-                  to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/\s/g,'')}`}
+                  to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/\s/g, '')}`}
                   className="hover:text-[#C6A667] transition duration-300 flex items-center gap-2"
                 >
                   <span className="w-1 h-1 bg-[#C6A667] rounded-full"></span> {item}
@@ -81,7 +81,7 @@ export default function Footer() {
             Our Services
           </h3>
           <ul className="space-y-2 sm:space-y-3 text-gray-400 text-sm sm:text-base">
-            {["Web Development","UI / UX Design","Cloud Solutions","AI & Automation","Digital Marketing"].map((service, idx) => (
+            {["Web Development", "UI / UX Design", "Cloud Solutions", "AI & Automation", "Digital Marketing"].map((service, idx) => (
               <li key={idx} className="hover:text-[#C6A667] transition duration-300 flex items-center gap-2 cursor-pointer">
                 <span className="w-1 h-1 bg-[#C6A667] rounded-full"></span> {service}
               </li>
@@ -108,11 +108,11 @@ export default function Footer() {
                 +977 9741812381
               </a>
             </li>
-            <li className="flex items-start gap-3 sm:gap-4 text-gray-400 w-200 text-sm">
+            <li className="flex items-start gap-3 sm:gap-4 text-gray-400 text-sm">
               <FaEnvelope className="mt-1 text-[#C6A667] shrink-0" />
               <a
                 href="mailto:royalconsultancyservices24@gmail.com"
-                className="hover:text-[#C6A667] transition break-all"
+                className="hover:text-[#C6A667] transition break-words break-all flex-1"
               >
                 royalconsultancyservices24@gmail.com
               </a>
@@ -123,21 +123,37 @@ export default function Footer() {
       </div>
 
       {/* ================= COPYRIGHT ================= */}
-      <div className="container mx-auto mt-12 pt-6 border-t border-gray-800">
+      <div className="w-full max-w-[1200px] mx-auto mt-12 pt-6 border-t border-gray-800">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
           <p className="text-gray-500 text-sm text-center md:text-left">
             © {new Date().getFullYear()} Royal Consultancy Services. All rights reserved.
           </p>
           <div className="flex justify-center md:justify-end gap-4">
-            <a href="https://www.facebook.com/share/1DwAMCHRMC/" className="text-gray-400 hover:text-[#C6A667] transition">
+            <a
+              href="https://www.facebook.com/share/1DwAMCHRMC/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-[#C6A667] transition"
+            >
               <FaFacebook className="text-lg sm:text-xl" />
             </a>
-            <a href="https://www.instagram.com/royal_consultancy_.services?igsh=azRwaHBsOG9yNzQ3" className="text-gray-400 hover:text-[#C6A667] transition">
+            <a
+              href="https://www.instagram.com/royal_consultancy_.services?igsh=azRwaHBsOG9yNzQ3"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-[#C6A667] transition"
+            >
               <FaInstagram className="text-lg sm:text-xl" />
             </a>
-            <a href="https://www.linkedin.com/company/royalconsultancyservices/" className="text-gray-400 hover:text-[#C6A667] transition">
+            <a
+              href="https://www.linkedin.com/company/royalconsultancyservices/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-[#C6A667] transition"
+            >
               <FaLinkedin className="text-lg sm:text-xl" />
             </a>
+
           </div>
         </div>
       </div>

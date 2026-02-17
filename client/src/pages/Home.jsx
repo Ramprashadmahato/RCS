@@ -31,10 +31,10 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full bg-linear-to-br from-gray-50 to-gray-100 mt-7">
+    <div className="w-full bg-gradient-to-br from-gray-50 to-gray-100 mt-7">
 
       {/* ================= HERO SECTION ================= */}
-      <section className="container mx-auto px-4 py-12 sm:py-16 md:py-20 flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-12 min-h-screen">
+      <section className="w-full max-w-[1200px] mx-auto px-4 py-12 sm:py-16 md:py-20 flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-12 min-h-screen">
 
         {/* Left Content */}
         <motion.div 
@@ -80,7 +80,7 @@ export default function Home() {
           >
             <motion.a 
               href="/contact" 
-              className="bg-linear-to-r from-[#C6A667] to-[#a88c4f] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:from-[#a88c4f] hover:to-[#8a7237] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base"
+              className="bg-gradient-to-r from-[#C6A667] to-[#a88c4f] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:from-[#a88c4f] hover:to-[#8a7237] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -117,8 +117,8 @@ export default function Home() {
       </section>
 
       {/* ================= CORE SERVICES ================= */}
-      <section className="py-20 bg-linear-to-br from-gray-50 to-gray-100">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="w-full max-w-[1200px] mx-auto px-4 text-center">
           <motion.h2 
             className="text-4xl font-bold text-gray-900 mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -190,7 +190,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
               >
-                <div className={`w-16 h-16 bg-linear-to-br ${item.color} rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   {item.icon === "Code" && (
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -237,7 +237,7 @@ export default function Home() {
 
       {/* ================= PROJECTS ================= */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="w-full max-w-[1200px] mx-auto px-4 text-center">
           <motion.h2 
             className="text-4xl font-bold text-gray-900 mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -271,7 +271,7 @@ export default function Home() {
                     alt={project.title}
                     className="w-full h-56 object-cover transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <button className="bg-white text-[#C6A667] px-6 py-2 rounded-full font-semibold transform translate-y-4 hover:translate-y-0 transition-transform duration-300">
                       View Details
                     </button>
@@ -291,8 +291,8 @@ export default function Home() {
       </section>
 
       {/* ================= TESTIMONIALS ================= */}
-      <section className="py-20 bg-linear-to-br from-gray-50 to-gray-100">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="w-full max-w-[1200px] mx-auto px-4 text-center">
           <motion.h2 
             className="text-4xl font-bold text-gray-900 mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -350,8 +350,8 @@ export default function Home() {
 
 
       {/* ================= ACHIEVEMENTS ================= */}
-      <section className="py-20 bg-linear-to-br from-gray-50 to-gray-100">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="w-full max-w-[1200px] mx-auto px-4 text-center">
           <motion.h2 
             className="text-4xl font-bold text-gray-900 mb-4"
             initial={{ opacity: 0, y: 20 }}

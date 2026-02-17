@@ -119,7 +119,7 @@ export default function Portfolio() {
 
       {/* ================= PROJECT GRID ================= */}
       <section className="py-12 sm:py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="w-full max-w-[1200px] mx-auto px-4">
           <motion.div 
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8"
             layout
@@ -168,7 +168,7 @@ export default function Portfolio() {
       {/* ================= CTA ================= */}
       <section className="py-16 text-center bg-gradient-to-r from-[#34495e] to-[#2c3e50] text-white">
         <motion.div
-          className="container mx-auto px-4"
+          className="w-full max-w-[1200px] mx-auto px-4 sm:px-6"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
