@@ -34,7 +34,7 @@ function ManageContacts({ token, onLogout }) {
 
   const deleteContact = async (id) => {
     if (!window.confirm("Are you sure you want to delete this contact?")) return;
-    
+
     try {
       await apiClient.delete(`/api/contacts/${id}`);
       setContacts(contacts.filter(c => c.id !== id));
@@ -53,7 +53,7 @@ function ManageContacts({ token, onLogout }) {
 Thank you for contacting us. We have received your inquiry and will get back to you shortly.
 
 Best regards,
-Royal Consultancy Services Team`,
+OneStep Global Education Team`,
       isOpen: true
     });
   };
@@ -69,14 +69,14 @@ Royal Consultancy Services Team`,
 
   const handleReplySubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       await apiClient.post("/api/contacts/reply", {
         to: replyData.email,
         subject: replyData.subject,
         message: replyData.message
       });
-      
+
       alert("Reply sent successfully!");
       closeReplyModal();
       // Refresh contacts after successful reply
@@ -112,7 +112,7 @@ Royal Consultancy Services Team`,
       <div className="p-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <motion.div 
+          <motion.div
             className="bg-white rounded-xl shadow-sm p-6 mb-6"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -142,7 +142,7 @@ Royal Consultancy Services Team`,
           </motion.div>
 
           {error && (
-            <motion.div 
+            <motion.div
               className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -155,7 +155,7 @@ Royal Consultancy Services Team`,
           )}
 
           {/* Contacts List */}
-          <motion.div 
+          <motion.div
             className="bg-white rounded-xl shadow-sm overflow-hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -170,7 +170,7 @@ Royal Consultancy Services Team`,
             ) : (
               <div className="divide-y divide-gray-200">
                 {filteredContacts.map((contact, index) => (
-                  <motion.div 
+                  <motion.div
                     key={contact.id}
                     className="p-6 hover:bg-gray-50 transition-colors duration-200"
                     initial={{ opacity: 0, y: 20 }}
@@ -204,12 +204,12 @@ Royal Consultancy Services Team`,
                             </div>
                           </div>
                         </div>
-                        
+
                         <div className="ml-11">
                           <p className="text-gray-700 whitespace-pre-wrap">{contact.message}</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center gap-2 md:flex-col md:items-end">
                         <motion.button
                           onClick={() => openReplyModal(contact.email)}
@@ -220,7 +220,7 @@ Royal Consultancy Services Team`,
                           <Reply className="w-4 h-4" />
                           <span className="hidden md:inline">Reply</span>
                         </motion.button>
-                        
+
                         <motion.button
                           onClick={() => deleteContact(contact.id)}
                           className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
@@ -243,7 +243,7 @@ Royal Consultancy Services Team`,
       {/* Reply Modal */}
       {replyData.isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <motion.div 
+          <motion.div
             className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -252,30 +252,30 @@ Royal Consultancy Services Team`,
               <h2 className="text-xl font-bold text-gray-900">Reply to Customer</h2>
               <p className="text-gray-600 mt-1">To: {replyData.email}</p>
             </div>
-            
+
             <form onSubmit={handleReplySubmit} className="p-6">
               <div className="mb-4">
                 <label className="block text-gray-700 mb-2 font-medium">Subject *</label>
                 <input
                   type="text"
                   value={replyData.subject}
-                  onChange={(e) => setReplyData({...replyData, subject: e.target.value})}
+                  onChange={(e) => setReplyData({ ...replyData, subject: e.target.value })}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C6A667] focus:border-transparent"
                   required
                 />
               </div>
-              
+
               <div className="mb-6">
                 <label className="block text-gray-700 mb-2 font-medium">Message *</label>
                 <textarea
                   value={replyData.message}
-                  onChange={(e) => setReplyData({...replyData, message: e.target.value})}
+                  onChange={(e) => setReplyData({ ...replyData, message: e.target.value })}
                   rows="8"
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C6A667] focus:border-transparent resize-none"
                   required
                 ></textarea>
               </div>
-              
+
               <div className="flex gap-3">
                 <motion.button
                   type="submit"
@@ -286,7 +286,7 @@ Royal Consultancy Services Team`,
                   <Reply className="w-5 h-5" />
                   Send Reply
                 </motion.button>
-                
+
                 <motion.button
                   type="button"
                   onClick={closeReplyModal}

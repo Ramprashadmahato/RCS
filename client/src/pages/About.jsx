@@ -1,366 +1,255 @@
-
 import React from "react";
-import { Lightbulb, Users, ShieldCheck, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import {
+  FaCheckCircle,
+  FaAward,
+  FaUsers,
+  FaLightbulb,
+  FaLinkedinIn,
+  FaTwitter,
+  FaGraduationCap,
+  FaGlobeAmericas
+} from "react-icons/fa";
 
-export default function About() {
+const About = () => {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.6 }
+  };
+
   return (
-    <div className="mt-20">
+    <div className="bg-[#f8fafc] text-slate-800">
 
-      {/* ================= Mission & Vision ================= */}
-      <section className="py-12 sm:py-16 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="container mx-auto px-4 text-center max-w-2xl sm:max-w-3xl">
-          <motion.h2
-            className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+      {/* ================= HERO ================= */}
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            Our Mission & Vision
-          </motion.h2>
+            <span className="text-secondary font-bold uppercase tracking-widest text-sm mb-4 block">Our Story</span>
+            <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-8">
+              Empowering <br />
+              <span className="text-primary italic">Global</span> Potential.
+            </h1>
 
-          <motion.p
-            className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Our mission is to empower businesses with transformational digital solutions,
-            leveraging cutting‑edge technologies, user‑centric design, and modern cloud
-            architecture. We help businesses enhance efficiency, strengthen their
-            digital presence, and accelerate growth.
-          </motion.p>
+            <p className="text-slate-500 text-xl mb-10 leading-relaxed max-w-lg">
+              OneStep Global Education is more than a consulting firm. We are architects of global opportunity, bridging the gap between talent and success across borders.
+            </p>
 
-          <motion.p
-            className="text-gray-700 text-base sm:text-lg leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            <div className="flex flex-wrap gap-4">
+              <Link
+                to="/services"
+                className="bg-primary text-white px-8 py-4 rounded-full font-bold shadow-xl shadow-pink-500/20 hover:bg-primary/90 hover:scale-105 transition-all text-lg"
+              >
+                Our Services
+              </Link>
+              <Link
+                to="/our-offices"
+                className="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-full font-bold hover:bg-slate-50 transition-all text-lg"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative"
           >
-            We envision a future where technology unlocks maximum potential for businesses,
-            enabling innovation, security, automation, and seamless customer experiences.
-            Our vision is to become a trusted global partner for modern digital
-            transformation solutions.
-          </motion.p>
+            <div className="absolute -top-10 -right-10 w-64 h-64 bg-secondary/10 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10"></div>
+            <img
+              src="https://images.unsplash.com/photo-1551434678-e076c223a692"
+              alt="Team"
+              className="rounded-[40px] shadow-2xl w-full object-cover aspect-[4/3] border-8 border-white"
+            />
+          </motion.div>
         </div>
       </section>
 
-      {/* ================= Expert Team ================= */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <motion.h2
-            className="text-4xl font-bold text-gray-900 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Meet Our Expert Team
-          </motion.h2>
+      {/* ================= STATS ================= */}
+      <section className="bg-white py-20 border-y border-slate-100">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+          {[
+            { label: "Successful Visas", value: "20k+", icon: <FaGraduationCap /> },
+            { label: "Partner Universities", value: "500+", icon: <FaGlobeAmericas /> },
+            { label: "Years Excellence", value: "14+", icon: <FaAward /> },
+            { label: "Expert Advisors", value: "50+", icon: <FaUsers /> }
+          ].map((stat, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <div className="text-secondary text-2xl flex justify-center mb-4">{stat.icon}</div>
+              <h2 className="text-4xl font-extrabold text-slate-900 mb-2">{stat.value}</h2>
+              <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">{stat.label}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mt-10 sm:mt-12">
+      {/* ================= MISSION ================= */}
+      <section className="max-w-7xl mx-auto px-6 py-32">
+        <div className="grid md:grid-cols-2 gap-24 items-center">
+          <motion.div {...fadeInUp} className="order-2 md:order-1">
+            <div className="grid grid-cols-2 gap-6 relative">
+              <div className="absolute inset-0 flex items-center justify-center -z-10">
+                <div className="w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+              </div>
+              <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" className="rounded-3xl shadow-xl mt-12" alt="Office" />
+              <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" className="rounded-3xl shadow-xl -mt-12" alt="Meeting" />
+            </div>
+          </motion.div>
 
+          <motion.div {...fadeInUp} className="order-1 md:order-2">
+            <span className="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">Our Vision</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-8 leading-tight">
+              One Planet, Infinite Opportunities.
+            </h2>
+
+            <p className="text-slate-500 text-lg mb-10 leading-relaxed">
+              We believe geography should never limit potential. Our mission is to democratize access to global education and professional growth through personalized guidance and a trusted global network.
+            </p>
+
+            <ul className="space-y-6">
+              {[
+                "Global network of certified consultants",
+                "End-to-end admissions and visa assistance",
+                "Exclusive access to international job fairs",
+                "Holistic approach to career management"
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-4 text-slate-700 font-medium">
+                  <div className="bg-primary/10 p-1.5 rounded-full">
+                    <FaCheckCircle className="text-primary" />
+                  </div>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ================= CORE VALUES ================= */}
+      <section className="bg-slate-900 py-32">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <motion.h2 {...fadeInUp} className="text-white text-4xl md:text-5xl font-extrabold mb-20">Our Core Principles</motion.h2>
+
+          <div className="grid md:grid-cols-3 gap-12">
             {[
-
-              {
-                name: "Himani Verma",
-                position: "Lead UI/UX Designer",
-                img: "/team1.png",
-              },
-              {
-                name: "Mandeep Chau",
-                position: "Senior Frontend Developer",
-                img: "/team2.png",
-              },
-              {
-                name: "Sophia Rami",
-                position: "Brand Strategist",
-                img: "/team3.png",
-              },
-              {
-                name: "David Kim",
-                position: "Backend Developer",
-                img: "/team4.png",
-              },
-              {
-                name: "Jessica Lee",
-                position: "Digital Marketer",
-                img: "/team5.png",
-              },
-              {
-                name: "Mukul Verma",
-                position: "Cybersecurity Specialist",
-                img: "/team6.png",
-              },
-            ].map((member, index) => (
+              { title: "Excellence", icon: <FaAward />, color: "text-blue-400", desc: "We strive for perfection in every consultation and success story." },
+              { title: "Inclusion", icon: <FaUsers />, color: "text-pink-400", desc: "Diversity is our strength across cultures and backgrounds." },
+              { title: "Innovation", icon: <FaLightbulb />, color: "text-yellow-400", desc: "Using technology to bridge global educational barriers." }
+            ].map((value, i) => (
               <motion.div
-                key={index}
-                className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                key={i}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className="p-12 bg-white/5 rounded-[40px] border border-white/10 hover:bg-white/10 transition-all group"
               >
-                <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-[#C6A667]/10 rounded-full transform rotate-6"></div>
-                  <img
-                    src={member.img}
-                    alt={member.name}
-                    className="relative w-32 h-32 rounded-full mx-auto object-cover border-4 border-[#C6A667]"
-                  />
+                <div className={`${value.color} text-4xl mb-8 group-hover:scale-110 transition-transform flex justify-center`}>
+                  {value.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                <p className="text-[#C6A667] font-medium">{member.position}</p>
+                <h3 className="text-white text-2xl font-bold mb-4">{value.title}</h3>
+                <p className="text-slate-400 text-lg leading-relaxed">
+                  {value.desc}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ================= Guiding Principles ================= */}
-      <section className="py-12 sm:py-16 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
-          <motion.h2
-            className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 sm:mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Our Guiding Principles
-          </motion.h2>
+      {/* ================= LEADERSHIP ================= */}
+      <section className="bg-white py-32">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <motion.span {...fadeInUp} className="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">The Experts</motion.span>
+          <motion.h2 {...fadeInUp} className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-20">Leadership Team</motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mt-8 sm:mt-10 md:mt-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+            {[1, 2, 3, 4].map((i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group"
+              >
+                <div className="relative mb-6 overflow-hidden rounded-[40px]">
+                  <img
+                    src={`https://randomuser.me/api/portraits/${i % 2 === 0 ? "men" : "women"}/${i + 30}.jpg`}
+                    className="w-full aspect-[4/5] object-cover group-hover:scale-110 transition-transform duration-500"
+                    alt="Leader"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-0 group-hover:opacity-60 transition-opacity"></div>
+                </div>
+                <h4 className="text-xl font-bold text-slate-900">Expert Name</h4>
+                <p className="text-secondary font-bold text-sm uppercase tracking-wide mt-1">Senior Advisor</p>
 
-            <motion.div
-              className="p-6 sm:p-8 bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center text-center h-full"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-            >
-              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#C6A667]/10 rounded-full flex items-center justify-center mb-4 flex-shrink-0">
-                <Lightbulb className="text-[#C6A667] w-7 h-7 sm:w-8 sm:h-8" />
-              </div>
-              <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Innovation</h4>
-              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                We embrace creativity to deliver impactful digital products.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="p-6 sm:p-8 bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center text-center h-full"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-            >
-              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#C6A667]/10 rounded-full flex items-center justify-center mb-4 flex-shrink-0">
-                <Users className="text-[#C6A667] w-7 h-7 sm:w-8 sm:h-8" />
-              </div>
-              <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Collaboration</h4>
-              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                We work collaboratively with transparency and empathy.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="p-6 sm:p-8 bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center text-center h-full"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-            >
-              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#C6A667]/10 rounded-full flex items-center justify-center mb-4 flex-shrink-0">
-                <ShieldCheck className="text-[#C6A667] w-7 h-7 sm:w-8 sm:h-8" />
-              </div>
-              <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Integrity</h4>
-              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                We follow ethical practices in every solution and service.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="p-6 sm:p-8 bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center text-center h-full"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-            >
-              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#C6A667]/10 rounded-full flex items-center justify-center mb-4 flex-shrink-0">
-                <Star className="text-[#C6A667] w-7 h-7 sm:w-8 sm:h-8" />
-              </div>
-              <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Excellence</h4>
-              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                We ensure top‑quality, performance, and reliability.
-              </p>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
-      {/* ================= Journey & Milestones ================= */}
-      <section className="py-12 sm:py-16 bg-white">
-        <div className="container mx-auto px-4 text-center max-w-2xl sm:max-w-3xl">
-
-          <motion.h2
-            className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Our Journey & Milestones
-          </motion.h2>
-
-          <div className="relative mt-10">
-
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#C6A667] to-[#a88c4f] hidden md:block"></div>
-
-            {[
-              {
-                year: "2016",
-                text: "Foundation & Vision — Royal Consultancy Services was founded to empower businesses.",
-              },
-              {
-                year: "2018",
-                text: "Major Milestones — Expanded global reach and delivered enterprise software projects.",
-              },
-              {
-                year: "2020",
-                text: "Technological Expansion — Adopted cloud and AI automation.",
-              },
-              {
-                year: "2022",
-                text: "Strategic Partnerships — Collaborations with major tech companies.",
-              },
-              {
-                year: "2024",
-                text: "Innovation Recognition — Top emerging digital solutions provider.",
-              },
-            ].map((item, index) => {
-
-              const isLeft = index % 2 === 0;
-
-              return (
-                <motion.div
-                  key={index}
-                  className="relative flex flex-col md:flex-row items-center md:items-start justify-between mb-12"
-                  initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                >
-
-                  {/* LEFT SIDE */}
-                  <div className={`hidden md:block md:w-5/12 ${isLeft ? "text-right pr-10" : ""}`}>
-                    {isLeft && (
-                      <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
-                        <div className="text-[#C6A667] font-bold text-lg mb-2">{item.year}</div>
-                        <p className="text-gray-700">{item.text}</p>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* CENTER DOT */}
-                  <div className="relative z-10 flex items-center justify-center">
-                    <div className="w-4 h-4 bg-[#C6A667] rounded-full"></div>
-                    <div className="absolute w-12 h-12 bg-[#C6A667]/10 rounded-full animate-ping"></div>
-                  </div>
-
-                  {/* RIGHT SIDE */}
-                  <div className={`md:w-5/12 ${!isLeft ? "pl-10" : ""}`}>
-
-                    {/* Mobile Always Visible */}
-                    <div className="md:hidden bg-white p-6 rounded-2xl shadow-lg border border-gray-100 text-left">
-                      <div className="text-[#C6A667] font-bold text-lg mb-2">{item.year}</div>
-                      <p className="text-gray-700">{item.text}</p>
-                    </div>
-
-                    {/* Desktop Right */}
-                    {!isLeft && (
-                      <div className="hidden md:block bg-white p-6 rounded-2xl shadow-lg border border-gray-100 text-left">
-                        <div className="text-[#C6A667] font-bold text-lg mb-2">{item.year}</div>
-                        <p className="text-gray-700">{item.text}</p>
-                      </div>
-                    )}
-
-                  </div>
-
-                </motion.div>
-              );
-            })}
-
+                <div className="flex justify-center gap-4 mt-4 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
+                  <a href="#" className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all"><FaLinkedinIn size={14} /></a>
+                  <a href="#" className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center hover:bg-secondary hover:text-white transition-all"><FaTwitter size={14} /></a>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-
-
-      {/* ================= CTA ================= */}
-      <section className="py-16 text-center bg-gradient-to-r from-[#2c3e50] to-[#1a2530] text-white">
+      {/* ================= FINAL CTA ================= */}
+      <section className="py-10 px-6">
         <motion.div
-          className="container mx-auto px-4"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          className="max-w-7xl mx-auto bg-premium-dark rounded-[50px] p-12 md:p-24 relative overflow-hidden"
         >
-          <motion.h2
-            className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Ready to Transform Your Business?
-          </motion.h2>
-          <motion.p
-            className="text-gray-300 text-base sm:text-lg max-w-xs sm:max-w-md md:max-w-xl mx-auto mb-6 sm:mb-8"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Whether you need a powerful digital strategy, modern software, or secure cloud solutions,
-            our team is here to help you grow and succeed.
-          </motion.p>
-          <motion.div
-            className="flex flex-col sm:flex-row justify-center gap-4"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <motion.a
-              href="/contact"
-              className="bg-gradient-to-r from-[#C6A667] to-[#a88c4f] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:from-[#a88c4f] hover:to-[#8a7237] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Get a Free Consultation
-            </motion.a>
+          {/* Abstract background shapes */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
 
-            <motion.a
-              href="/services"
-              className="border-2 border-[#C6A667] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:bg-[#C6A667] hover:text-black transition-all duration-300 transform hover:-translate-y-1 text-sm sm:text-base"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Explore Our Services
-            </motion.a>
-          </motion.div>
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="max-w-xl text-center md:text-left">
+              <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-8">
+                Ready to Start Your Journey?
+              </h2>
+              <p className="text-white/70 text-xl mb-12 max-w-lg">
+                Book a free session with our professional advisors and take the first step towards your global education.
+              </p>
+              <Link
+                to="/our-offices"
+                className="inline-block bg-white text-dark px-10 py-5 rounded-full font-bold text-lg hover:bg-secondary hover:text-white transition-all shadow-2xl shadow-black/30"
+              >
+                Talk to an Advisor
+              </Link>
+            </div>
+
+            <div className="flex flex-col items-center">
+              <div className="w-48 h-48 bg-white rounded-full flex items-center justify-center p-8 shadow-2xl border border-white/20 mb-6">
+                <img src="/Logo.png" alt="OneStep Logo" className="w-full h-full object-contain" />
+              </div>
+              <div className="text-center">
+                <span className="text-white/50 text-sm uppercase tracking-[0.3em]">Accredited & Trusted</span>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </section>
     </div>
   );
-}
+};
+
+export default About;

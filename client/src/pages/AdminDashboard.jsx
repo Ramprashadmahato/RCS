@@ -29,17 +29,16 @@ function AdminDashboard({ onLogout }) {
     <div className="flex h-screen bg-gray-50">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}
 
       {/* Sidebar */}
-      <aside 
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 text-white transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 text-white transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="flex items-center justify-between p-4 border-b border-gray-700">
           <div className="flex items-center gap-3">
@@ -48,17 +47,17 @@ function AdminDashboard({ onLogout }) {
             </div>
             <div>
               <h2 className="text-lg font-bold">Admin Panel</h2>
-              <p className="text-sm text-gray-400">Royal Consultancy</p>
+              <p className="text-sm text-gray-400">OneStep Global Education</p>
             </div>
           </div>
-          <button 
+          <button
             className="lg:hidden text-gray-400 hover:text-white"
             onClick={() => setSidebarOpen(false)}
           >
             <X className="w-6 h-6" />
           </button>
         </div>
-        
+
         <nav className="flex-1 p-4 space-y-2">
           {menuItems.map((item, index) => (
             <motion.div
@@ -78,7 +77,7 @@ function AdminDashboard({ onLogout }) {
             </motion.div>
           ))}
         </nav>
-        
+
         <div className="p-4 border-t border-gray-700">
           <motion.button
             onClick={handleLogout}
@@ -98,7 +97,7 @@ function AdminDashboard({ onLogout }) {
         <header className="bg-white shadow-sm border-b border-gray-200 px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <button 
+              <button
                 className="lg:hidden text-gray-600 hover:text-gray-900"
                 onClick={() => setSidebarOpen(true)}
               >
@@ -109,7 +108,7 @@ function AdminDashboard({ onLogout }) {
                 <p className="text-sm text-gray-600">Welcome back, Admin</p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-4">
               <div className="hidden md:flex items-center gap-2 text-gray-600">
                 <Home className="w-4 h-4" />
@@ -124,7 +123,7 @@ function AdminDashboard({ onLogout }) {
 
         {/* Page Content */}
         <main className="flex-1 overflow-y-auto p-6">
-          <motion.div 
+          <motion.div
             className="max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -138,9 +137,9 @@ function AdminDashboard({ onLogout }) {
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to Admin Dashboard</h2>
                 <p className="text-gray-600 mb-8">Select an option from the sidebar to get started</p>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                <motion.div 
+                <motion.div
                   className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
@@ -154,15 +153,15 @@ function AdminDashboard({ onLogout }) {
                       <p className="text-sm text-gray-600">View and respond to customer inquiries</p>
                     </div>
                   </div>
-                  <Link 
+                  <Link
                     to="/manage-contacts"
                     className="mt-4 inline-block text-blue-600 hover:text-blue-800 font-medium text-sm"
                   >
                     Go to Contacts →
                   </Link>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
@@ -176,7 +175,7 @@ function AdminDashboard({ onLogout }) {
                       <p className="text-sm text-gray-600">Update your account password</p>
                     </div>
                   </div>
-                  <Link 
+                  <Link
                     to="/change-password"
                     className="mt-4 inline-block text-purple-600 hover:text-purple-800 font-medium text-sm"
                   >

@@ -1,162 +1,102 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaMapMarkerAlt,
-  FaPhoneAlt,
-  FaEnvelope,
-} from "react-icons/fa";
-import { motion } from "framer-motion";
+import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-[#111111] to-[#222222] text-white py-12 px-4">
-      <div className="w-full max-w-300  mx-auto grid gap-8 sm:gap-10 md:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="bg-[#1b2140] text-white pt-24 pb-12">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Top Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-20">
+          {/* Logo & Info */}
+          <div className="lg:col-span-2">
+            <Link to="/" className="flex items-center space-x-3 mb-8">
+              <div className="w-14 h-14 rounded-full flex items-center justify-center bg-white p-2">
+                <img
+                  src="/Logo.png"
+                  alt="OneStep Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold leading-none">OneStep Global</h2>
+                <p className="text-[10px] uppercase tracking-[0.2em] opacity-60 mt-1">Education</p>
+              </div>
+            </Link>
 
-        {/* ================= LOGO & ABOUT ================= */}
-        <motion.div
-          className="lg:col-span-1 "
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="relative">
-              {/* <div className="absolute inset-0 bg-[#C6A667]/20 rounded-full transform rotate-6"></div> */}
-              <img
-                src="/Logo.png"
-                alt="Royal Consultancy Service Logo"
-                className="relative w-12 sm:w-12 h-12 sm:h-16 rounded-full border-2 border-[#C6A667] object-cover z-10"
-              />
-            </div>
-            <div>
-              <h2 className="font-bold text-xl sm:text-2xl leading-tight">
-                Royal <span className="text-[#C6A667]">Consultancy</span> <br />
-                <span className="text-[#C6A667]">Services</span>
-              </h2>
+            <p className="text-white/60 text-lg max-w-sm mb-10 leading-relaxed">
+              Empowering students to achieve their dreams of international education with expert guidance and global opportunities.
+            </p>
+
+            <div className="flex space-x-4">
+              {[
+                { icon: <FaFacebookF />, link: "#" },
+                { icon: <FaInstagram />, link: "#" },
+                { icon: <FaYoutube />, link: "#" },
+                { icon: <FaLinkedinIn />, link: "#" },
+                { icon: <FaTwitter />, link: "#" },
+              ].map((social, i) => (
+                <a
+                  key={i}
+                  href={social.link}
+                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-[#1b2140] transition-all"
+                >
+                  {social.icon}
+                </a>
+              ))}
             </div>
           </div>
 
-          <p className="text-gray-400 mt-3 sm:mt-4 leading-relaxed text-sm sm:text-base">
-            A premier digital consultancy delivering modern web solutions,
-            cloud transformation, and innovative digital services.
-          </p>
-        </motion.div>
+          {/* Quick Links Group */}
+          <div>
+            <h3 className="text-white font-bold text-lg mb-8 relative after:content-[''] after:absolute after:left-0 after:-bottom-2 after:w-8 after:h-1 after:bg-primary">Explore</h3>
+            <ul className="space-y-4 text-white/60">
+              <li><Link to="/about" className="hover:text-white hover:translate-x-2 transition-all inline-block">About Us</Link></li>
+              <li><Link to="/chairman-message" className="hover:text-white hover:translate-x-2 transition-all inline-block">Chairman's Message</Link></li>
+              <li><Link to="/services" className="hover:text-white hover:translate-x-2 transition-all inline-block">Our Services</Link></li>
+              <li><Link to="/scholarship" className="hover:text-white hover:translate-x-2 transition-all inline-block">Scholarships</Link></li>
+              <li><Link to="/events" className="hover:text-white hover:translate-x-2 transition-all inline-block">Upcoming Events</Link></li>
+            </ul>
+          </div>
 
-        {/* ================= QUICK LINKS ================= */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <h3 className="font-bold text-lg sm:text-xl mb-4 sm:mb-6 text-[#C6A667]">
-            Quick Links
-          </h3>
-          <ul className="space-y-2 sm:space-y-3 text-gray-400 text-sm sm:text-base">
-            {["Home", "About Us", "Services", "Portfolio", "Contact"].map((item, idx) => (
-              <li key={idx}>
-                <Link
-                  to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/\s/g, '')}`}
-                  className="hover:text-[#C6A667] transition duration-300 flex items-center gap-2"
-                >
-                  <span className="w-1 h-1 bg-[#C6A667] rounded-full"></span> {item}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+          <div>
+            <h3 className="text-white font-bold text-lg mb-8 relative after:content-[''] after:absolute after:left-0 after:-bottom-2 after:w-8 after:h-1 after:bg-secondary">Destinations</h3>
+            <ul className="space-y-4 text-white/60">
+              <li><Link to="/study/australia" className="hover:text-white hover:translate-x-2 transition-all inline-block">Study in Australia</Link></li>
+              <li><Link to="/study/usa" className="hover:text-white hover:translate-x-2 transition-all inline-block">Study in USA</Link></li>
+              <li><Link to="/study/uk" className="hover:text-white hover:translate-x-2 transition-all inline-block">Study in UK</Link></li>
+              <li><Link to="/study/canada" className="hover:text-white hover:translate-x-2 transition-all inline-block">Study in Canada</Link></li>
+              <li><Link to="/study/other" className="hover:text-white hover:translate-x-2 transition-all inline-block">Other Countries</Link></li>
+            </ul>
+          </div>
 
-        {/* ================= OUR SERVICES ================= */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <h3 className="font-bold text-lg sm:text-xl mb-4 sm:mb-6 text-[#C6A667]">
-            Our Services
-          </h3>
-          <ul className="space-y-2 sm:space-y-3 text-gray-400 text-sm sm:text-base">
-            {["Web Development", "UI / UX Design", "Cloud Solutions", "AI & Automation", "Digital Marketing"].map((service, idx) => (
-              <li key={idx} className="hover:text-[#C6A667] transition duration-300 flex items-center gap-2 cursor-pointer">
-                <span className="w-1 h-1 bg-[#C6A667] rounded-full"></span> {service}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-
-        {/* ================= CONTACT DETAILS ================= */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <h3 className="font-bold text-lg sm:text-xl mb-4 sm:mb-6 text-[#C6A667]">Contact Us</h3>
-          <ul className="space-y-3 sm:space-y-4">
-            <li className="flex items-start gap-3 sm:gap-4 text-gray-400 text-sm">
-              <FaMapMarkerAlt className="mt-1 text-[#C6A667] shrink-0" />
-              <span>Narephat-32, Kathmandu, Nepal</span>
-            </li>
-            <li className="flex items-center gap-3 sm:gap-4 text-gray-400 text-sm">
-              <FaPhoneAlt className="text-[#C6A667] shrink-0" />
-              <a href="tel:+9779741812381" className="hover:text-[#C6A667] transition">
-                +977 9741812381
-              </a>
-            </li>
-            <li className="flex items-start gap-3 sm:gap-4 text-gray-400 text-sm">
-              <FaEnvelope className="mt-1 text-[#C6A667] shrink-0" />
-              <a
-                href="mailto:royalconsultancyservices24@gmail.com"
-                className="hover:text-[#C6A667] transition break-words break-all flex-1"
-              >
-                royalconsultancyservices24@gmail.com
-              </a>
-            </li>
-          </ul>
-        </motion.div>
-
-      </div>
-
-      {/* ================= COPYRIGHT ================= */}
-      <div className="w-full max-w-[1200px] mx-auto mt-12 pt-6 border-t border-gray-800">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
-          <p className="text-gray-500 text-sm text-center md:text-left">
-            © {new Date().getFullYear()} Royal Consultancy Services. All rights reserved.
-          </p>
-          <div className="flex justify-center md:justify-end gap-4">
-            <a
-              href="https://www.facebook.com/share/1DwAMCHRMC/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#C6A667] transition"
+          <div>
+            <h3 className="text-white font-bold text-lg mb-8 relative after:content-[''] after:absolute after:left-0 after:-bottom-2 after:w-8 after:h-1 after:bg-white">Support</h3>
+            <ul className="space-y-4 text-white/60 mb-8">
+              <li><Link to="/our-offices" className="hover:text-white hover:translate-x-2 transition-all inline-block">Contact Us</Link></li>
+              <li><Link to="/faq" className="hover:text-white hover:translate-x-2 transition-all inline-block">Help & FAQ</Link></li>
+            </ul>
+            <Link
+              to="/our-offices"
+              className="bg-gradient-to-r from-orange-400 to-orange-600 px-6 py-3 rounded-xl font-bold text-sm block text-center shadow-lg shadow-orange-500/20 hover:scale-105 transition-all"
             >
-              <FaFacebook className="text-lg sm:text-xl" />
-            </a>
-            <a
-              href="https://www.instagram.com/royal_consultancy_.services?igsh=azRwaHBsOG9yNzQ3"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#C6A667] transition"
-            >
-              <FaInstagram className="text-lg sm:text-xl" />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/royalconsultancyservices/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#C6A667] transition"
-            >
-              <FaLinkedin className="text-lg sm:text-xl" />
-            </a>
+              Talk to Advisor
+            </Link>
+          </div>
+        </div>
 
+        {/* Footer Bottom */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-white/40">
+          <p>© 2026 OneStep Global Education. All rights reserved.</p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <Link to="/privacy-policy" className="hover:text-white">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="hover:text-white">Terms of Service</Link>
+            <Link to="/legal" className="hover:text-white">Legal</Link>
           </div>
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

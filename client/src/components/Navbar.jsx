@@ -1,134 +1,267 @@
+import React, { useState, useEffect, useRef } from "react";
+import { ChevronDown, Menu, X, Building2, Globe, Briefcase, GraduationCap, Award } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+const Navbar = () => {
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const hoverTimeout = useRef(null);
+  const location = useLocation();
 
-export default function Navbar() {
-    const [scrolled, setScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // Track scroll position and progress
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    const navVariants = {
-        hidden: { y: -50 },
-        visible: { y: 0, transition: { duration: 0.5 } }
+      // Calculate scroll progress
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      setScrollProgress(scrolled);
     };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    const mobileMenuVariants = {
-        closed: { opacity: 0, x: 100 },
-        open: { opacity: 1, x: 0, transition: { duration: 0.3 } }
-    };
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setActiveDropdown(null);
+  }, [location.pathname]);
 
-    return (
-        <motion.nav
-            className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg py-2' : 'bg-transparent py-4'}`}
-            variants={navVariants}
-            initial="hidden"
-            animate="visible"
-        >
-            <div className="w-full max-w-[1200px] mx-auto flex items-center justify-between px-4">
+  const handleMouseEnter = (menu) => {
+    clearTimeout(hoverTimeout.current);
+    setActiveDropdown(menu);
+  };
 
-                {/* Logo + Name */}
-                <motion.div
-                    className="flex items-center gap-3"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                    <Link to="/" className="flex items-center gap-3">
+  const handleMouseLeave = () => {
+    hoverTimeout.current = setTimeout(() => setActiveDropdown(null), 200);
+  };
 
-                        {/* Logo Image */}
-                        <motion.img
-                            src="/Logo.png"
-                            alt="RCS Logo"
-                            className="w-12 h-12 rounded-full object-cover border-2 border-[#C6A667] p-1 shadow-lg"
-                            whileHover={{ rotate: 5 }}
-                            transition={{ type: "spring", stiffness: 300 }}
-                        />
+  const menus = [
+    {
+      label: "Institution",
+      key: "institution",
+      icon: <Building2 size={18} />,
+      links: [
+        { name: "About OneStep Global Education", to: "/about" },
+        { name: "Message From Chairman", to: "/chairman-message" },
+        { name: "OneStep for Institutions", to: "/for-institutions" },
+      ],
+    },
+    {
+      label: "Study Abroad",
+      key: "study",
+      icon: <Globe size={18} />,
+      links: [
+        { name: "Study in Australia", to: "/study/australia", flag: "🇦🇺" },
+        { name: "Study in USA", to: "/study/usa", flag: "🇺🇸" },
+        { name: "Study in UK", to: "/study/uk", flag: "🇬🇧" },
+        { name: "Study in Canada", to: "/study/canada", flag: "🇨🇦" },
+        { name: "Other Countries", to: "/study/other", flag: "🌍" },
+      ],
+    },
+    {
+      label: "Services",
+      key: "services",
+      icon: <Briefcase size={18} />,
+      links: [
+        { name: "Career Counselling", to: "/services/career-counselling" },
+        { name: "Visa Application Assistance", to: "/services/visa-assistance" },
+        { name: "Pre & Post Departure Briefings", to: "/services/pre-post-departure" },
+      ],
+    },
+    {
+      label: "Test Preparation",
+      key: "test",
+      icon: <GraduationCap size={18} />,
+      links: [
+        { name: "IELTS", to: "/test/ielts" },
+        { name: "PTE", to: "/test/pte" },
+        { name: "TOEFL", to: "/test/toefl" },
+        { name: "SAT", to: "/test/sat" },
+        { name: "GRE/GMAT", to: "/test/gre-gmat" },
+      ],
+    },
+  ];
 
-                        <div className="text-left">
-                            <h1 className="font-bold text-xl leading-tight">
-                                <span className={`${scrolled ? 'text-gray-900' : 'text-red-300'}`}>Royal Consultancy</span>
-                                <br />
-                                <span className="text-[#C6A667]">Services</span>
-                            </h1>
-                        </div>
-                    </Link>
-                </motion.div>
+  const isHeroPage = location.pathname === "/";
 
-                {/* Desktop Menu */}
-                <div className="hidden md:flex items-center gap-8">
-                    <motion.ul className="flex items-center gap-8 text-gray-700 font-medium">
-                        <motion.li whileHover={{ y: -3 }}><Link to="/" className="hover:text-[#C6A667] transition-colors duration-300">Home</Link></motion.li>
-                        <motion.li whileHover={{ y: -3 }}><Link to="/about" className="hover:text-[#C6A667] transition-colors duration-300">About</Link></motion.li>
-                        <motion.li whileHover={{ y: -3 }}><Link to="/services" className="hover:text-[#C6A667] transition-colors duration-300">Services</Link></motion.li>
-                        <motion.li whileHover={{ y: -3 }}><Link to="/portfolio" className="hover:text-[#C6A667] transition-colors duration-300">Portfolio</Link></motion.li>
-                        {/* <motion.li whileHover={{ y: -3 }}><Link to="/contact" className="hover:text-[#C6A667] transition-colors duration-300">Contact</Link></motion.li> */}
-                    </motion.ul>
-
-                    <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <Link
-                            to="/contact"
-                            className="bg-gradient-to-r from-[#C6A667] to-[#a88c4f] text-white px-6 py-2 rounded-full font-medium hover:from-[#a88c4f] hover:to-[#8a7237] transition-all duration-300 shadow-md hover:shadow-lg"
-                        >
-                            Get in Touch
-                        </Link>
-                    </motion.div>
-                </div>
-
-                {/* Mobile Menu Button */}
-                <div className="md:hidden">
-                    <motion.button
-                        className="text-gray-800 text-2xl"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        whileTap={{ scale: 0.9 }}
-                    >
-                        {mobileMenuOpen ? (
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        ) : (
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        )}
-                    </motion.button>
-                </div>
+  return (
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${isScrolled
+        ? "bg-white/80 backdrop-blur-xl shadow-lg py-2 text-slate-800 border-b border-slate-200/50"
+        : isHeroPage
+          ? "bg-transparent py-6 text-white"
+          : "bg-white/90 backdrop-blur-md shadow-sm py-4 text-slate-800"
+        }`}
+    >
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-primary via-secondary to-primary z-[60]"
+        style={{ width: `${scrollProgress}%` }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      />
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center space-x-3 group text-current shrink-0">
+            <motion.div
+              animate={{
+                scale: isScrolled ? 0.85 : 1,
+                padding: isScrolled ? "2px" : "4px"
+              }}
+              className="w-12 h-12 min-w-[48px] min-h-[48px] flex-none rounded-full flex items-center justify-center bg-white shadow-xl shadow-slate-200 transition-all duration-500 overflow-hidden"
+            >
+              <img
+                src="/Logo.png"
+                alt="Logo"
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
+            <div className="flex flex-col">
+              <span className={`text-xl font-black tracking-tight leading-none transition-all duration-500 ${isScrolled ? 'text-slate-900' : ''}`}>OneStep Global</span>
+              <span className="text-[10px] uppercase font-bold tracking-[0.3em] opacity-60 mt-1">Education</span>
             </div>
+          </Link>
 
-            {/* Mobile Menu */}
-            {mobileMenuOpen && (
-                <motion.div
-                    className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg"
-                    variants={mobileMenuVariants}
-                    initial="closed"
-                    animate="open"
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center space-x-7 font-medium">
+            {menus.map((menu) => (
+              <div
+                key={menu.key}
+                className="relative"
+                onMouseEnter={() => handleMouseEnter(menu.key)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button className="flex items-center gap-2 transition-all cursor-pointer py-2 text-sm xl:text-base relative group">
+                  <span className="group-hover:text-primary transition-colors">{menu.label}</span>
+                  <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === menu.key ? 'rotate-180 text-primary' : 'opacity-50'}`} />
+
+                  {/* Underline Animation */}
+                  <motion.div
+                    className="absolute bottom-0 left-0 w-full h-[2px] bg-primary origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+                    layoutId={`underline-${menu.key}`}
+                  />
+                </button>
+
+                <AnimatePresence>
+                  {activeDropdown === menu.key && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-0 mt-1 bg-white text-gray-800 rounded-xl shadow-2xl w-64 overflow-hidden border border-gray-100"
+                    >
+                      <div className="py-2">
+                        {menu.links.map((link) => (
+                          <Link
+                            key={link.to}
+                            to={link.to}
+                            className="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 hover:text-[#E91E63] transition-colors text-sm border-l-4 border-transparent hover:border-[#E91E63]"
+                          >
+                            {link.flag && <span className="text-lg">{link.flag}</span>}
+                            <span>{link.name}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+
+            <Link
+              to="/scholarship"
+              className="hover:text-[#E91E63] transition-colors text-sm xl:text-base"
+            >
+              Scholarships
+            </Link>
+
+            <div className="flex items-center space-x-4 ml-4">
+              <Link
+                to="/events"
+                className="px-6 py-2.5 rounded-full bg-[#E91E63] text-white text-sm font-semibold shadow-lg hover:bg-[#D81B60] hover:shadow-pink-500/20 transition-all active:scale-95"
+              >
+                Events
+              </Link>
+              <Link
+                to="/our-offices"
+                className="px-6 py-2.5 rounded-full bg-[#03A9F4] text-white text-sm font-semibold shadow-lg hover:bg-[#039BE5] hover:shadow-cyan-500/20 transition-all active:scale-95"
+              >
+                Our Offices
+              </Link>
+            </div>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden p-2 rounded-lg hover:bg-black/5"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden bg-white text-gray-800 border-t border-gray-100 overflow-hidden shadow-2xl"
+          >
+            <div className="px-6 py-8 space-y-8">
+              {menus.map((menu) => (
+                <div key={menu.key} className="space-y-4">
+                  <h3 className="text-xs uppercase tracking-[0.2em] text-gray-400 font-black">{menu.label}</h3>
+                  <div className="grid grid-cols-1 gap-3">
+                    {menu.links.map((link) => (
+                      <Link
+                        key={link.to}
+                        to={link.to}
+                        className="flex items-center gap-3 text-lg font-bold text-slate-700 hover:text-[#E91E63] transition-colors"
+                      >
+                        {link.flag && <span>{link.flag}</span>}
+                        {link.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              <div className="pt-6 border-t border-gray-50 flex flex-col space-y-6">
+                <Link
+                  to="/scholarship"
+                  className="text-xl font-bold text-slate-700 hover:text-[#E91E63] transition-colors"
                 >
-                    <ul className="flex flex-col items-center py-4 space-y-4">
-                        <motion.li whileHover={{ scale: 1.05 }}><Link to="/" className="block px-4 py-2 text-gray-700 hover:text-[#C6A667]" onClick={() => setMobileMenuOpen(false)}>Home</Link></motion.li>
-                        <motion.li whileHover={{ scale: 1.05 }}><Link to="/about" className="block px-4 py-2 text-gray-700 hover:text-[#C6A667]" onClick={() => setMobileMenuOpen(false)}>About</Link></motion.li>
-                        <motion.li whileHover={{ scale: 1.05 }}><Link to="/services" className="block px-4 py-2 text-gray-700 hover:text-[#C6A667]" onClick={() => setMobileMenuOpen(false)}>Services</Link></motion.li>
-                        <motion.li whileHover={{ scale: 1.05 }}><Link to="/portfolio" className="block px-4 py-2 text-gray-700 hover:text-[#C6A667]" onClick={() => setMobileMenuOpen(false)}>Portfolio</Link></motion.li>
-                        <motion.li whileHover={{ scale: 1.05 }}>
-                            <Link
-                                to="/contact"
-                                className="block mx-4 bg-gradient-to-r from-[#C6A667] to-[#a88c4f] text-white px-6 py-2 rounded-full font-medium text-center"
-                                onClick={() => setMobileMenuOpen(false)}
-                            >
-                                Get in Touch
-                            </Link>
-                        </motion.li>
-                    </ul>
-                </motion.div>
-            )}
-        </motion.nav>
-    );
-}
+                  Scholarships
+                </Link>
+                <div className="grid grid-cols-2 gap-4">
+                  <Link
+                    to="/events"
+                    className="text-center py-4 rounded-2xl bg-[#E91E63] text-white font-bold shadow-lg shadow-pink-500/20"
+                  >
+                    Events
+                  </Link>
+                  <Link
+                    to="/our-offices"
+                    className="text-center py-4 rounded-2xl bg-[#03A9F4] text-white font-bold shadow-lg shadow-cyan-500/20"
+                  >
+                    Our Offices
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+};
+
+export default Navbar;

@@ -1,455 +1,466 @@
 import React from "react";
+import { FiArrowRight } from "react-icons/fi";
+import { FaStar, FaGlobe, FaGraduationCap, FaAward, FaUsers } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-export default function Home() {
-  const [isInitialRender, setIsInitialRender] = React.useState(true);
-  
-  React.useEffect(() => {
-    // Reset animations when component mounts
-    setIsInitialRender(true);
-    
-    // Handle resize events to reset animations
-    const handleResize = () => {
-      setIsInitialRender(true);
-      // Small timeout to allow the animation to reset
-      setTimeout(() => setIsInitialRender(false), 50);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-  
-  React.useEffect(() => {
-    // Trigger animation on initial render
-    if (isInitialRender) {
-      const timer = setTimeout(() => {
-        setIsInitialRender(false);
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [isInitialRender]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
+const Home = () => {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.6 }
   };
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
-
-  const imageVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: { duration: 0.8, ease: "easeOut", delay: 0.3 }
-    }
+  const staggerContainer = {
+    initial: {},
+    whileInView: { transition: { staggerChildren: 0.15 } }
   };
 
   return (
-    <div className="w-full bg-gradient-to-br from-gray-50 to-gray-100 pt-6 sm:pt-8 pb-6">
+    <div className="bg-[#f8fafc] text-slate-800">
 
-      {/* ================= HERO SECTION ================= */}
-<section className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 py-10 sm:py-14 md:py-20 flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12 min-h-[500px] sm:min-h-[600px] md:min-h-[700px] relative">
+      {/* ================= HERO ================= */}
+      <section className="relative h-[100vh] min-h-[700px] flex items-center overflow-hidden bg-slate-900">
 
-
-        {/* Decorative Elements - Positioned relatively to the section */}
-        <div className="hidden md:block absolute -top-4 -left-4 w-20 h-20 bg-[#C6A667]/10 rounded-full blur-xl z-0"></div>
-        <div className="hidden md:block absolute -bottom-4 -right-4 w-24 h-24 bg-[#a88c4f]/10 rounded-full blur-xl z-0"></div>
-
-        {/* Left Content */}
-        <motion.div 
-          className="w-full md:w-1/2 text-center md:text-left relative z-10"
-          variants={containerVariants}
-          initial={isInitialRender ? "hidden" : false}
-          animate="visible"
-        >
-
-          <motion.h1 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-3 sm:mb-4"
-            variants={itemVariants}
+        {/* Dynamic Background with Parallax Feel */}
+        <div className="absolute inset-0 z-0">
+          <motion.div
+            animate={{
+              scale: [1, 1.1, 1],
+              rotate: [0, 1, 0]
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="w-full h-full"
           >
-            <span className="text-[#111111]">Royal </span>
-            <br />
-            <span className="text-[#C6A667]">Consultancy</span>
-          </motion.h1>
-
-          <motion.h2 
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mt-2 sm:mt-3"
-            variants={itemVariants}
-          >
-            <span className="text-gray-700">Transform </span>
-            <span className="text-[#C6A667]">Your Business </span>
-            <span className="text-gray-700">Today.</span>
-          </motion.h2>
-
-          <motion.p 
-            className="mt-4 sm:mt-6 leading-relaxed text-gray-600 text-sm sm:text-base md:text-lg max-w-md sm:max-w-lg md:max-w-xl mx-auto md:mx-0"
-            variants={itemVariants}
-          >
-            Royal Consultancy Service is a premier digital consultancy delivering innovative,
-            scalable, and secure web solutions. We help businesses accelerate growth through
-            cutting-edge technology, cloud transformation, and user‑centric design.
-          </motion.p>
-
-          <motion.div 
-            className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start items-center"
-            variants={itemVariants}
-          >
-            <motion.a 
-              href="/contact" 
-              className="bg-gradient-to-r from-[#C6A667] to-[#a88c4f] text-white px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full font-semibold hover:from-[#a88c4f] hover:to-[#8a7237] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm md:text-base whitespace-nowrap"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Get Started
-            </motion.a>
-            <motion.a 
-              href="/about" 
-              className="border-2 border-[#C6A667] text-[#C6A667] px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full font-semibold hover:bg-[#C6A667] hover:text-white transition-all duration-300 transform hover:-translate-y-1 text-sm md:text-base whitespace-nowrap"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Learn More
-            </motion.a>
-          </motion.div>
-
-        </motion.div>
-        
-        {/* Right Image */}
-        <motion.div 
-          className="w-full md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0"
-          variants={imageVariants}
-          initial={isInitialRender ? "hidden" : false}
-          animate="visible"
-        >
-          <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md">
-            <div className="absolute inset-0 bg-[#C6A667] rounded-2xl transform rotate-6 opacity-20 z-0"></div>
             <img
               src="/Hero.png"
-              alt="Royal Consultancy Service Team"
-              className="relative rounded-2xl shadow-2xl w-full h-auto max-h-[300px] sm:max-h-[350px] md:max-h-[400px] z-10 object-contain"
+              alt="Study Abroad"
+              className="w-full h-full object-cover opacity-70"
             />
-          </div>
-        </motion.div>
-      </section>
+          </motion.div>
+          {/* Advanced Gradient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+        </div>
 
-      {/* ================= CORE SERVICES ================= */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="w-full max-w-[1200px] mx-auto px-4 text-center">
-          <motion.h2 
-            className="text-4xl font-bold text-gray-900 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Our Core Services
-          </motion.h2>
+        {/* Floating Decorative Elements */}
+        <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+          <motion.div
+            animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[20%] right-[10%] w-24 h-24 bg-primary/10 rounded-full blur-3xl"
+          ></motion.div>
+          <motion.div
+            animate={{ y: [0, 30, 0], rotate: [0, -5, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-[30%] left-[5%] w-32 h-32 bg-secondary/10 rounded-full blur-3xl"
+          ></motion.div>
+        </div>
 
-          <motion.p 
-            className="text-gray-600 text-lg mt-4 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            We provide end-to-end digital solutions tailored to meet modern
-            business challenges.
-          </motion.p>
+        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full pt-20">
+          <div className="grid lg:grid-cols-2 items-center gap-16">
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mt-10 sm:mt-12 text-left">
-
-            {[
-
-              {
-                title: "Web Application Development",
-                desc: "Modern, responsive, and scalable web applications using React, Node.js, and cloud technologies.",
-                icon: "Code",
-                color: "from-blue-500 to-cyan-500"
-              },
-              {
-                title: "UI / UX Design",
-                desc: "User-centric, intuitive, and visually appealing interfaces aligned with your brand identity.",
-                icon: "Palette",
-                color: "from-purple-500 to-pink-500"
-              },
-              {
-                title: "Cloud & DevOps Solutions",
-                desc: "Cloud migration, CI/CD pipelines, and scalable infrastructure using industry best practices.",
-                icon: "Cloud",
-                color: "from-sky-500 to-blue-500"
-              },
-              {
-                title: "Cybersecurity Consulting",
-                desc: "Secure authentication, data protection, and compliance-focused security solutions.",
-                icon: "Shield",
-                color: "from-red-500 to-orange-500"
-              },
-              {
-                title: "AI & Data Analytics",
-                desc: "Data-driven insights, dashboards, automation, and intelligent business solutions.",
-                icon: "Brain",
-                color: "from-indigo-500 to-purple-500"
-              },
-              {
-                title: "Digital Marketing",
-                desc: "SEO, performance optimization, and digital strategies to enhance online visibility.",
-                icon: "BarChart3",
-                color: "from-green-500 to-emerald-500"
-              },
-            ].map((item, index) => (
+            <div className="max-w-2xl">
               <motion.div
-                key={index}
-                className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-8"
               >
-                <div className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                  {item.icon === "Code" && (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                  )}
-                  {item.icon === "Palette" && (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                    </svg>
-                  )}
-                  {item.icon === "Cloud" && (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-                    </svg>
-                  )}
-                  {item.icon === "Shield" && (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  )}
-                  {item.icon === "Brain" && (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                    </svg>
-                  )}
-                  {item.icon === "BarChart3" && (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  )}
-                </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-[#C6A667] transition-colors duration-300">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600">
-                  {item.desc}
-                </p>
+                <span className="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                <span className="text-white/80 text-xs font-bold uppercase tracking-widest">Nepal's #1 Consultancy</span>
               </motion.div>
-            ))}
+
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-6xl md:text-8xl font-black text-white leading-[0.95] tracking-tighter"
+              >
+                Your Global <br />
+                <span className="text-gradient italic px-2">Education</span> <br />
+                Partner.
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="mt-8 text-xl text-white/70 font-medium max-w-lg leading-relaxed border-l-2 border-secondary/30 pl-6"
+              >
+                Unlock prestigious international campuses with expert application strategy and visa guidance architecture.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="mt-12 flex flex-wrap gap-6"
+              >
+                <Link
+                  to="/services"
+                  className="group relative bg-primary text-white px-10 py-5 rounded-full font-bold shadow-2xl transition-all overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center gap-2 text-lg">
+                    Oue Service <FiArrowRight className="group-hover:translate-x-2 transition-transform" />
+                  </span>
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                </Link>
+                <Link
+                  to="/services/career-counselling"
+                  className="px-10 py-5 rounded-full font-bold text-lg text-white border border-white/20 hover:bg-white/10 transition-all backdrop-blur-sm"
+                >
+                  Career Counselling
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* ROTATING ATTRACTIVE BADGE */}
+            <div className="hidden lg:flex justify-end relative">
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 1, type: "spring" }}
+                className="relative w-72 h-72"
+              >
+                {/* Rotating Text Ring */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0"
+                >
+                  <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
+                    <defs>
+                      <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0 " />
+                    </defs>
+                    <text className="text-[10px] uppercase font-black tracking-[0.2em] fill-white/20">
+                      <textPath xlinkHref="#circlePath">
+                        • Certified Experts • Success Guaranteed • Study Abroad •
+                      </textPath>
+                    </text>
+                  </svg>
+                </motion.div>
+
+                {/* Center Content */}
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  className="absolute inset-4 bg-white/5 backdrop-blur-2xl rounded-full border border-white/10 flex flex-col items-center justify-center p-8 text-center shadow-2xl"
+                >
+                  <FaAward className="text-secondary text-5xl mb-4" />
+                  <span className="text-white text-3xl font-black leading-none">15Yrs</span>
+                  <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest mt-2">Professional <br /> Experience</span>
+                </motion.div>
+
+                {/* Orbital dots */}
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-[-20px] pointer-events-none"
+                >
+                  <div className="absolute top-1/2 left-0 w-3 h-3 bg-primary rounded-full blur-[2px] shadow-lg shadow-primary"></div>
+                  <div className="absolute top-0 left-1/2 w-2 h-2 bg-secondary rounded-full blur-[2px]"></div>
+                </motion.div>
+              </motion.div>
+            </div>
 
           </div>
         </div>
+
+        {/* Bottom indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 text-white/30"
+        >
+          <span className="text-[10px] uppercase tracking-[0.5em] font-bold">Discover More</span>
+          <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
+        </motion.div>
       </section>
 
-      {/* ================= PROJECTS ================= */}
-      <section className="py-20 bg-white">
-        <div className="w-full max-w-[1200px] mx-auto px-4 text-center">
-          <motion.h2 
-            className="text-4xl font-bold text-gray-900 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Recent Projects
-          </motion.h2>
+      {/* ================= SERVICES ================= */}
+      <section className="max-w-7xl mx-auto px-6 py-24">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="max-w-2xl">
+            <motion.span {...fadeInUp} className="text-primary font-bold uppercase tracking-widest text-sm">Empowering Your Future</motion.span>
+            <motion.h2 {...fadeInUp} className="text-4xl md:text-5xl font-extrabold mt-4 text-slate-900 leading-tight">
+              Comprehensive Services for <br /> International Students
+            </motion.h2>
+          </div>
+          <motion.p {...fadeInUp} className="text-slate-500 max-w-sm mb-2 text-lg">
+            Guiding you through every step of your international academic journey with precision and care.
+          </motion.p>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mt-10 sm:mt-12">
-
-            {[
-
-              { img: "/Project1.png", title: "Enterprise CRM System" },
-              { img: "/Project2.png", title: "E-Commerce Web Platform" },
-              { img: "/Project3.png", title: "Banking & Finance Application" },
-            ].map((project, index) => (
-              <motion.div
-                key={index}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-3 gap-8"
+        >
+          {[
+            {
+              title: "Career Counselling",
+              desc: "Personalized guidance to help you choose the right course and university based on your aspirations.",
+              link: "/services/career-counselling",
+              color: "bg-blue-50 text-blue-600"
+            },
+            {
+              title: "Visa Assistance",
+              desc: "Expert support for your visa application process to ensure a high success rate and hassle-free experience.",
+              link: "/services/visa-assistance",
+              color: "bg-pink-50 text-pink-600"
+            },
+            {
+              title: "Pre-Departure Briefings",
+              desc: "Get prepared for your life in a new country with our comprehensive pre and post-departure support.",
+              link: "/services/pre-post-departure",
+              color: "bg-cyan-50 text-cyan-600"
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              variants={fadeInUp}
+              className="bg-white rounded-3xl p-10 border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all group"
+            >
+              <div className={`w-16 h-16 rounded-2xl ${item.color} flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-transform`}>
+                <FaGraduationCap />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+              <p className="text-slate-500 leading-relaxed mb-8">
+                {item.desc}
+              </p>
+              <Link
+                to={item.link}
+                className="inline-flex items-center gap-2 font-bold text-slate-900 group-hover:text-primary transition-colors"
               >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.img}
-                    alt={project.title}
-                    className="w-full h-56 object-cover transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <button className="bg-white text-[#C6A667] px-6 py-2 rounded-full font-semibold transform translate-y-4 hover:translate-y-0 transition-transform duration-300">
-                      View Details
-                    </button>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-bold text-lg text-gray-900 mb-2">{project.title}</h3>
-                  <p className="text-sm text-gray-600">
-                    View Project →
+                Learn More <FiArrowRight className="group-hover:translate-x-2 transition-transform" />
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* ================= COUNTRIES ================= */}
+      <section className="bg-slate-900 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <motion.h2 {...fadeInUp} className="text-white text-4xl md:text-5xl font-extrabold mb-6">Explore Study Destinations</motion.h2>
+            <motion.p {...fadeInUp} className="text-slate-400 text-lg">
+              Choose from the world's most prestigious education systems. We help you find the perfect environment for your growth.
+            </motion.p>
+          </div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-4 gap-6"
+          >
+            {[
+              { country: "Australia", desc: "Global leader in research and quality education.", link: "/blog/australia", imgId: "1523482580672-f109ba8cb9be" },
+              { country: "USA", desc: "Boundless opportunities and world-renowned degrees.", link: "/blog/usa", imgId: "1485738422979-f5c462d49f74" },
+              { country: "UK", desc: "Timeless academic excellence and prestige.", link: "/blog/uk", imgId: "1486325212027-ebad6a20d6ae" },
+              { country: "Canada", desc: "Multicultural haven with top-tier universities.", link: "/blog/canada", imgId: "1557992298-22730304040a" }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                variants={fadeInUp}
+                className="group relative overflow-hidden rounded-3xl aspect-[4/5] bg-slate-800"
+              >
+                <img
+                  src={`https://images.unsplash.com/photo-${item.imgId}?auto=format&fit=crop&q=80&w=800`}
+                  alt={item.country}
+                  className="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent flex flex-col justify-end p-8">
+                  <h3 className="text-white text-2xl font-bold mb-2">{item.country}</h3>
+                  <p className="text-slate-300 text-sm mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {item.desc}
                   </p>
+                  <Link
+                    to={item.link}
+                    className="text-white font-bold flex items-center gap-2 group-hover:text-secondary"
+                  >
+                    Explore <FiArrowRight />
+                  </Link>
                 </div>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
 
+      {/* ================= PARTNERS & AFFILIATIONS ================= */}
+      <section className="py-24 overflow-hidden bg-white border-y border-slate-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-10">
+            <div className="max-w-xl text-center md:text-left">
+              <motion.span
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="text-primary font-bold uppercase tracking-[0.3em] text-xs block"
+              >
+                Global Affiliations
+              </motion.span>
+              <motion.h2
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-4xl md:text-5xl font-extrabold text-slate-900 mt-4"
+              >
+                Our Trusted <span className="text-secondary italic">Partners</span>
+              </motion.h2>
+              <p className="text-slate-500 text-lg leading-relaxed max-w-lg mt-6">
+                We are proud to be affiliated with world-renowned institutions and regulatory bodies, ensuring the highest standards of international education.
+              </p>
+            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              <Link to="/partners" className="bg-slate-900 text-white px-8 py-4 rounded-full font-bold hover:bg-slate-800 transition-all shadow-xl flex items-center gap-2 group">
+                View All Partners <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Infinite Marquee logic */}
+          <div className="relative mt-12 mb-4">
+            {/* Soft Gradient Overlay for edges */}
+            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+
+            <div className="flex overflow-hidden group">
+              <motion.div
+                className="flex items-center space-x-20 pr-20"
+                animate={{
+                  x: [0, -1500]
+                }}
+                transition={{
+                  x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 30,
+                    ease: "linear",
+                  },
+                }}
+              >
+                {/* Dynamically iterating through actual logo files */}
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, i) => (
+                  <div
+                    key={`partner-${i}`}
+                    className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 transform hover:scale-110"
+                  >
+                    <img
+                      src={`/p${item}.png`}
+                      alt={`Affiliation ${item}`}
+                      className="h-14 md:h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    />
+                  </div>
+                ))}
+                {/* Second loop for seamlessness */}
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, i) => (
+                  <div
+                    key={`partner-loop-${i}`}
+                    className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 transform hover:scale-110"
+                  >
+                    <img
+                      src={`/p${item}.png`}
+                      alt={`Affiliation ${item}`}
+                      className="h-14 md:h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    />
+                  </div>
+                ))}
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ================= TESTIMONIALS ================= */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="w-full max-w-[1200px] mx-auto px-4 text-center">
-          <motion.h2 
-            className="text-4xl font-bold text-gray-900 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Client Testimonials
-          </motion.h2>
+      <section className="bg-slate-50 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <motion.span {...fadeInUp} className="text-[#E91E63] font-bold uppercase tracking-widest text-sm">Real Stories</motion.span>
+            <motion.h2 {...fadeInUp} className="text-4xl md:text-5xl font-extrabold text-slate-900 mt-4 underline decoration-[#03A9F4] decoration-4 underline-offset-8">What Our Students Say</motion.h2>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mt-10 sm:mt-12 text-left">
-
+          <div className="grid md:grid-cols-3 gap-8">
             {[
-
-              {
-                quote:
-                  "Royal Consultancy Service delivered a high-quality solution on time with excellent communication.",
-                name: "John Doe",
-              },
-              {
-                quote:
-                  "Their expertise in web and cloud technologies helped modernize our business systems.",
-                name: "Sarah Williams",
-              },
-              {
-                quote:
-                  "Professional team with strong technical knowledge and project management skills.",
-                name: "Alice Johnson",
-              },
-            ].map((item, index) => (
+              { name: "Sabita KC", uni: "La Trobe University, Melbourne", text: "I would like to thank the team for their professional services. They always helped me solve my troubles and kept me positive." },
+              { name: "Junu Shrestha", uni: "ICHM, Adelaide", text: "I'm thankful for their guidance. They showed me the correct path for my life and I recommend them to everyone." },
+              { name: "Sadhana Basnet", uni: "UTS:INSEARCH, Sydney", text: "I got a great opportunity to study in Australia. I would have never got this without their support. Best consultants!" },
+            ].map((testi, i) => (
               <motion.div
-                key={index}
-                className="bg-white p-8 rounded-2xl shadow-lg relative border border-gray-100"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                key={i}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className={`p-10 rounded-[40px] shadow-lg ${i === 1 ? 'bg-primary text-white' : 'bg-white text-slate-800'}`}
               >
-                <div className="absolute top-0 left-6 -translate-y-1/2 bg-[#C6A667] text-white p-2 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-                  </svg>
+                <div className="flex mb-6 text-yellow-400">
+                  {[...Array(5)].map((_, i) => <FaStar key={i} />)}
                 </div>
-                <p className="italic text-gray-700 text-lg mb-6 pl-2">
-                  “{item.quote}”
-                </p>
-                <p className="font-semibold text-gray-900">{item.name}</p>
+                <p className="text-lg italic leading-relaxed mb-8">"{testi.text}"</p>
+                <div>
+                  <h4 className="text-xl font-bold">{testi.name}</h4>
+                  <p className={`${i === 1 ? 'text-white/70' : 'text-slate-400'} text-sm mt-1 uppercase tracking-wider`}>{testi.uni}</p>
+                </div>
               </motion.div>
             ))}
-
           </div>
         </div>
       </section>
 
+      {/* ================= FINAL CTA ================= */}
+      <section className="py-10 px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-7xl mx-auto bg-premium-dark rounded-[50px] p-12 md:p-24 relative overflow-hidden"
+        >
+          {/* Abstract background shapes */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
 
-      {/* ================= ACHIEVEMENTS ================= */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="w-full max-w-[1200px] mx-auto px-4 text-center">
-          <motion.h2 
-            className="text-4xl font-bold text-gray-900 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Our Achievements
-          </motion.h2>
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="max-w-xl text-center md:text-left">
+              <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-8">
+                Ready to Start Your Journey?
+              </h2>
+              <p className="text-white/70 text-xl mb-12 max-w-lg">
+                Book a free session with our professional advisors and take the first step towards your global education.
+              </p>
+              <Link
+                to="/our-offices"
+                className="inline-block bg-white text-dark px-10 py-5 rounded-full font-bold text-lg hover:bg-secondary hover:text-white transition-all shadow-2xl shadow-black/30"
+              >
+                Talk to an Advisor
+              </Link>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mt-10 sm:mt-12">
-
-            {/* Box 1 */}
-            <motion.div 
-              className="p-8 bg-white rounded-2xl shadow-lg border border-gray-100"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-            >
-              <div className="text-5xl font-bold text-[#C6A667] mb-2">300+</div>
-              <p className="text-gray-700 font-medium">Projects Delivered</p>
-            </motion.div>
-
-            {/* Box 2 */}
-            <motion.div 
-              className="p-8 bg-white rounded-2xl shadow-lg border border-gray-100"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-            >
-              <div className="text-5xl font-bold text-[#C6A667] mb-2">150+</div>
-              <p className="text-gray-700 font-medium">Satisfied Clients</p>
-            </motion.div>
-
-            {/* Box 3 */}
-            <motion.div 
-              className="p-8 bg-white rounded-2xl shadow-lg border border-gray-100"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-            >
-              <div className="text-5xl font-bold text-[#C6A667] mb-2">10+</div>
-              <p className="text-gray-700 font-medium">Years of Experience</p>
-            </motion.div>
-
-            {/* Box 4 */}
-            <motion.div 
-              className="p-8 bg-white rounded-2xl shadow-lg border border-gray-100"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-            >
-              <div className="text-5xl font-bold text-[#C6A667] mb-2">98%</div>
-              <p className="text-gray-700 font-medium">Client Retention</p>
-            </motion.div>
-
+            <div className="flex flex-col items-center">
+              <div className="w-48 h-48 bg-white rounded-full flex items-center justify-center p-8 shadow-2xl border border-white/20 mb-6">
+                <img src="/Logo.png" alt="OneStep Logo" className="w-full h-full object-contain" />
+              </div>
+              <div className="text-center">
+                <span className="text-white/50 text-sm uppercase tracking-[0.3em]">Accredited & Trusted</span>
+              </div>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </section>
-      
 
     </div>
   );
-}
+};
+
+export default Home;

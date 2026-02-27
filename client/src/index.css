@@ -1,16 +1,60 @@
 @import "tailwindcss";
 
-/* Additional responsive styles */
-@media (max-width: 640px) {
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+@theme {
+  --color-primary: #E91E63;
+  --color-secondary: #03A9F4;
+  --color-dark: #1b2140;
+  --color-light: #f3f5f9;
+}
+
+:root {
+  --primary: #E91E63;
+  --secondary: #03A9F4;
+  --dark: #1b2140;
+  --light: #f3f5f9;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom Utilities */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #E91E63 0%, #03A9F4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-premium-dark {
+  background: linear-gradient(135deg, #1b2140 0%, #222c55 100%);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
   }
 }
 
-@media (min-width: 641px) and (max-width: 768px) {
-  .container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
+.animate-scroll {
+  display: flex !important;
+  width: max-content !important;
+  animation: scroll 40s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
 }
