@@ -11,7 +11,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import CareerCounselling from "./pages/CareerCounselling";
 import Event from "./pages/Event";
-import OurOffice from "./pages/OurOfffice";
+import OurOffice from "./pages/OurOffice";
 import Scholarship from "./pages/Scholarship";
 import VisaApplication from "./pages/VisaApplication";
 import Department from "./pages/Department";
@@ -23,7 +23,7 @@ import Toefl from "./pages/Toefl";
 import Sat from "./pages/Sat";
 import Gre from "./pages/Gre";
 import DirectPatner from "./pages/DirectPatner";
-import StudyAustrilia from "./pages/StudyAustrilia";
+import StudyAustralia from "./pages/StudyAustralia";
 import StudyUsa from "./pages/StudyUsa";
 import StudyUk from "./pages/StudyUk";
 import StudyCanada from "./pages/StudyCanada";
@@ -102,7 +102,7 @@ function App() {
               <Route path="/test/sat" element={<Sat />} />
               <Route path="/test/gre-gmat" element={<Gre />} />
               <Route path="/partners" element={<DirectPatner />} />
-              <Route path="/study/australia" element={<StudyAustrilia />} />
+              <Route path="/study/australia" element={<StudyAustralia />} />
               <Route path="/study/usa" element={<StudyUsa />} />
               <Route path="/study/uk" element={<StudyUk />} />
               <Route path="/study/canada" element={<StudyCanada />} />

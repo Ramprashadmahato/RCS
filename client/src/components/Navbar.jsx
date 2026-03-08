@@ -101,7 +101,7 @@ const Navbar = () => {
     >
       {/* Scroll Progress Bar */}
       <motion.div
-        className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-primary via-secondary to-primary z-[60]"
+        className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-accent-pink via-accent-blue to-accent-pink z-[60]"
         style={{ width: `${scrollProgress}%` }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       />
@@ -137,12 +137,12 @@ const Navbar = () => {
                 onMouseLeave={handleMouseLeave}
               >
                 <button className="flex items-center gap-2 transition-all cursor-pointer py-2 text-sm xl:text-base relative group">
-                  <span className="group-hover:text-primary transition-colors">{menu.label}</span>
-                  <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === menu.key ? 'rotate-180 text-primary' : 'opacity-50'}`} />
+                  <span className="group-hover:text-accent-pink transition-colors">{menu.label}</span>
+                  <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === menu.key ? 'rotate-180 text-accent-pink' : 'opacity-50'}`} />
 
                   {/* Underline Animation */}
                   <motion.div
-                    className="absolute bottom-0 left-0 w-full h-[2px] bg-primary origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+                    className="absolute bottom-0 left-0 w-full h-[2px] bg-accent-pink origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
                     layoutId={`underline-${menu.key}`}
                   />
                 </button>
@@ -161,10 +161,12 @@ const Navbar = () => {
                           <Link
                             key={link.to}
                             to={link.to}
-                            className="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 hover:text-[#E91E63] transition-colors text-sm border-l-4 border-transparent hover:border-[#E91E63]"
+                            className="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 hover:text-accent-pink transition-colors text-sm border-l-4 border-transparent hover:border-accent-pink group/item"
                           >
-                            {link.flag && <span className="text-lg">{link.flag}</span>}
-                            <span>{link.name}</span>
+                            {link.flag ? (
+                              <span className="text-lg grayscale group-hover/item:grayscale-0 transition-all">{link.flag}</span>
+                            ) : null}
+                            <span className="font-medium">{link.name}</span>
                           </Link>
                         ))}
                       </div>
@@ -176,7 +178,7 @@ const Navbar = () => {
 
             <Link
               to="/scholarship"
-              className="hover:text-[#E91E63] transition-colors text-sm xl:text-base"
+              className="hover:text-accent-pink transition-colors text-sm xl:text-base"
             >
               Scholarships
             </Link>
@@ -184,13 +186,13 @@ const Navbar = () => {
             <div className="flex items-center space-x-4 ml-4">
               <Link
                 to="/events"
-                className="px-6 py-2.5 rounded-full bg-[#E91E63] text-white text-sm font-semibold shadow-lg hover:bg-[#D81B60] hover:shadow-pink-500/20 transition-all active:scale-95"
+                className="px-6 py-2.5 rounded-full bg-accent-pink text-white text-sm font-semibold shadow-lg hover:bg-[#D81B60] hover:shadow-pink-500/20 transition-all active:scale-95"
               >
                 Events
               </Link>
               <Link
                 to="/our-offices"
-                className="px-6 py-2.5 rounded-full bg-[#03A9F4] text-white text-sm font-semibold shadow-lg hover:bg-[#039BE5] hover:shadow-cyan-500/20 transition-all active:scale-95"
+                className="px-6 py-2.5 rounded-full bg-accent-blue text-white text-sm font-semibold shadow-lg hover:bg-[#039BE5] hover:shadow-cyan-500/20 transition-all active:scale-95"
               >
                 Our Offices
               </Link>

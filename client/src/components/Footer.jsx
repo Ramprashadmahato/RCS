@@ -4,7 +4,7 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaTwitter } from "re
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1b2140] text-white pt-24 pb-12">
+    <footer className="bg-slate-950 text-white pt-24 pb-12 noise-bg">
       <div className="max-w-7xl mx-auto px-6">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-20">
@@ -39,7 +39,7 @@ const Footer = () => {
                 <a
                   key={i}
                   href={social.link}
-                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-[#1b2140] transition-all"
+                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-slate-950 transition-all shadow-lg"
                 >
                   {social.icon}
                 </a>
@@ -49,7 +49,7 @@ const Footer = () => {
 
           {/* Quick Links Group */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-8 relative after:content-[''] after:absolute after:left-0 after:-bottom-2 after:w-8 after:h-1 after:bg-primary">Explore</h3>
+            <h3 className="text-white font-bold text-lg mb-8 relative after:content-[''] after:absolute after:left-0 after:-bottom-2 after:w-8 after:h-1 after:bg-accent-pink">Explore</h3>
             <ul className="space-y-4 text-white/60">
               <li><Link to="/about" className="hover:text-white hover:translate-x-2 transition-all inline-block">About Us</Link></li>
               <li><Link to="/chairman-message" className="hover:text-white hover:translate-x-2 transition-all inline-block">Chairman's Message</Link></li>
@@ -60,7 +60,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-white font-bold text-lg mb-8 relative after:content-[''] after:absolute after:left-0 after:-bottom-2 after:w-8 after:h-1 after:bg-secondary">Destinations</h3>
+            <h3 className="text-white font-bold text-lg mb-8 relative after:content-[''] after:absolute after:left-0 after:-bottom-2 after:w-8 after:h-1 after:bg-accent-blue">Destinations</h3>
             <ul className="space-y-4 text-white/60">
               <li><Link to="/study/australia" className="hover:text-white hover:translate-x-2 transition-all inline-block">Study in Australia</Link></li>
               <li><Link to="/study/usa" className="hover:text-white hover:translate-x-2 transition-all inline-block">Study in USA</Link></li>
@@ -78,7 +78,7 @@ const Footer = () => {
             </ul>
             <Link
               to="/our-offices"
-              className="bg-gradient-to-r from-orange-400 to-orange-600 px-6 py-3 rounded-xl font-bold text-sm block text-center shadow-lg shadow-orange-500/20 hover:scale-105 transition-all"
+              className="bg-accent-pink px-6 py-3 rounded-xl font-bold text-sm block text-center shadow-lg shadow-pink-500/20 hover:scale-105 transition-all text-white"
             >
               Talk to Advisor
             </Link>

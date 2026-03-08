@@ -18,10 +18,10 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-[#f8fafc] text-slate-800">
+    <div className="bg-light text-slate-800 noise-bg">
 
       {/* ================= HERO ================= */}
-      <section className="relative h-[100vh] min-h-[700px] flex items-center overflow-hidden bg-slate-900">
+      <section className="relative h-screen min-h-[650px] flex items-center justify-center overflow-hidden bg-slate-900">
 
         {/* Dynamic Background with Parallax Feel */}
         <div className="absolute inset-0 z-0">
@@ -49,26 +49,26 @@ const Home = () => {
           <motion.div
             animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[20%] right-[10%] w-24 h-24 bg-primary/10 rounded-full blur-3xl"
+            className="absolute top-[20%] right-[10%] w-24 h-24 bg-accent-blue/10 rounded-full blur-3xl"
           ></motion.div>
           <motion.div
             animate={{ y: [0, 30, 0], rotate: [0, -5, 0] }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-[30%] left-[5%] w-32 h-32 bg-secondary/10 rounded-full blur-3xl"
+            className="absolute bottom-[30%] left-[5%] w-32 h-32 bg-accent-pink/10 rounded-full blur-3xl"
           ></motion.div>
         </div>
 
-        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full pt-20">
-          <div className="grid lg:grid-cols-2 items-center gap-16">
+        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full py-12">
+          <div className="grid lg:grid-cols-2 items-center gap-12 xl:gap-16">
 
             <div className="max-w-2xl">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-8"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-6 md:mb-8"
               >
-                <span className="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                <span className="w-2 h-2 bg-accent-blue rounded-full animate-pulse"></span>
                 <span className="text-white/80 text-xs font-bold uppercase tracking-widest">Nepal's #1 Consultancy</span>
               </motion.div>
 
@@ -76,10 +76,10 @@ const Home = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-6xl md:text-8xl font-black text-white leading-[0.95] tracking-tighter"
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-[0.95] tracking-tighter"
               >
                 Your Global <br />
-                <span className="text-gradient italic px-2">Education</span> <br />
+                <span className="text-accent-blue italic px-2">Education</span> <br />
                 Partner.
               </motion.h1>
 
@@ -87,7 +87,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="mt-8 text-xl text-white/70 font-medium max-w-lg leading-relaxed border-l-2 border-secondary/30 pl-6"
+                className="mt-6 md:mt-10 text-lg md:text-xl text-white/70 font-medium max-w-lg leading-relaxed border-l-2 border-accent-blue/30 pl-6"
               >
                 Unlock prestigious international campuses with expert application strategy and visa guidance architecture.
               </motion.p>
@@ -96,20 +96,20 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="mt-12 flex flex-wrap gap-6"
+                className="mt-10 md:mt-12 flex flex-wrap gap-4 md:gap-6"
               >
                 <Link
                   to="/services"
-                  className="group relative bg-primary text-white px-10 py-5 rounded-full font-bold shadow-2xl transition-all overflow-hidden"
+                  className="group relative bg-accent-pink text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold shadow-2xl transition-all overflow-hidden"
                 >
-                  <span className="relative z-10 flex items-center gap-2 text-lg">
-                    Oue Service <FiArrowRight className="group-hover:translate-x-2 transition-transform" />
+                  <span className="relative z-10 flex items-center gap-2 text-base md:text-lg">
+                    Our Services <FiArrowRight className="group-hover:translate-x-2 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
                 </Link>
                 <Link
                   to="/services/career-counselling"
-                  className="px-10 py-5 rounded-full font-bold text-lg text-white border border-white/20 hover:bg-white/10 transition-all backdrop-blur-sm"
+                  className="px-8 md:px-10 py-4 md:py-5 rounded-full font-bold text-base md:text-lg text-white border border-white/20 hover:bg-white/10 transition-all backdrop-blur-sm"
                 >
                   Career Counselling
                 </Link>
@@ -147,7 +147,7 @@ const Home = () => {
                   whileHover={{ scale: 1.1 }}
                   className="absolute inset-4 bg-white/5 backdrop-blur-2xl rounded-full border border-white/10 flex flex-col items-center justify-center p-8 text-center shadow-2xl"
                 >
-                  <FaAward className="text-secondary text-5xl mb-4" />
+                  <FaAward className="text-accent-blue text-5xl mb-4" />
                   <span className="text-white text-3xl font-black leading-none">15Yrs</span>
                   <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest mt-2">Professional <br /> Experience</span>
                 </motion.div>
@@ -158,8 +158,8 @@ const Home = () => {
                   transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
                   className="absolute inset-[-20px] pointer-events-none"
                 >
-                  <div className="absolute top-1/2 left-0 w-3 h-3 bg-primary rounded-full blur-[2px] shadow-lg shadow-primary"></div>
-                  <div className="absolute top-0 left-1/2 w-2 h-2 bg-secondary rounded-full blur-[2px]"></div>
+                  <div className="absolute top-1/2 left-0 w-3 h-3 bg-accent-pink rounded-full blur-[2px] shadow-lg shadow-accent-pink"></div>
+                  <div className="absolute top-0 left-1/2 w-2 h-2 bg-accent-blue rounded-full blur-[2px]"></div>
                 </motion.div>
               </motion.div>
             </div>
@@ -183,7 +183,7 @@ const Home = () => {
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl">
-            <motion.span {...fadeInUp} className="text-primary font-bold uppercase tracking-widest text-sm">Empowering Your Future</motion.span>
+            <motion.span {...fadeInUp} className="text-accent-pink font-bold uppercase tracking-widest text-sm">Empowering Your Future</motion.span>
             <motion.h2 {...fadeInUp} className="text-4xl md:text-5xl font-extrabold mt-4 text-slate-900 leading-tight">
               Comprehensive Services for <br /> International Students
             </motion.h2>
@@ -223,7 +223,7 @@ const Home = () => {
             <motion.div
               key={i}
               variants={fadeInUp}
-              className="bg-white rounded-3xl p-10 border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all group"
+              className="bg-white rounded-3xl p-10 border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all group premium-card"
             >
               <div className={`w-16 h-16 rounded-2xl ${item.color} flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-transform`}>
                 <FaGraduationCap />
@@ -234,7 +234,7 @@ const Home = () => {
               </p>
               <Link
                 to={item.link}
-                className="inline-flex items-center gap-2 font-bold text-slate-900 group-hover:text-primary transition-colors"
+                className="inline-flex items-center gap-2 font-bold text-slate-900 group-hover:text-accent-pink transition-colors"
               >
                 Learn More <FiArrowRight className="group-hover:translate-x-2 transition-transform" />
               </Link>
@@ -283,7 +283,7 @@ const Home = () => {
                   </p>
                   <Link
                     to={item.link}
-                    className="text-white font-bold flex items-center gap-2 group-hover:text-secondary"
+                    className="text-white font-bold flex items-center gap-2 group-hover:text-accent-blue"
                   >
                     Explore <FiArrowRight />
                   </Link>
@@ -303,7 +303,7 @@ const Home = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="text-primary font-bold uppercase tracking-[0.3em] text-xs block"
+                className="text-accent-pink font-bold uppercase tracking-[0.3em] text-xs block"
               >
                 Global Affiliations
               </motion.span>
@@ -313,7 +313,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 className="text-4xl md:text-5xl font-extrabold text-slate-900 mt-4"
               >
-                Our Trusted <span className="text-secondary italic">Partners</span>
+                Our Trusted <span className="text-accent-blue italic">Partners</span>
               </motion.h2>
               <p className="text-slate-500 text-lg leading-relaxed max-w-lg mt-6">
                 We are proud to be affiliated with world-renowned institutions and regulatory bodies, ensuring the highest standards of international education.
@@ -403,9 +403,9 @@ const Home = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`p-10 rounded-[40px] shadow-lg ${i === 1 ? 'bg-primary text-white' : 'bg-white text-slate-800'}`}
+                className={`p-10 rounded-[40px] shadow-lg premium-card ${i === 1 ? 'bg-primary text-white' : 'bg-white text-slate-800'}`}
               >
-                <div className="flex mb-6 text-yellow-400">
+                <div className="flex mb-6 text-yellow-500">
                   {[...Array(5)].map((_, i) => <FaStar key={i} />)}
                 </div>
                 <p className="text-lg italic leading-relaxed mb-8">"{testi.text}"</p>
@@ -428,8 +428,8 @@ const Home = () => {
           className="max-w-7xl mx-auto bg-premium-dark rounded-[50px] p-12 md:p-24 relative overflow-hidden"
         >
           {/* Abstract background shapes */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-accent-pink/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent-blue/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
 
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
             <div className="max-w-xl text-center md:text-left">
@@ -441,7 +441,7 @@ const Home = () => {
               </p>
               <Link
                 to="/our-offices"
-                className="inline-block bg-white text-dark px-10 py-5 rounded-full font-bold text-lg hover:bg-secondary hover:text-white transition-all shadow-2xl shadow-black/30"
+                className="inline-block bg-white text-dark px-10 py-5 rounded-full font-bold text-lg hover:bg-accent-blue hover:text-white transition-all shadow-2xl shadow-black/30"
               >
                 Talk to an Advisor
               </Link>

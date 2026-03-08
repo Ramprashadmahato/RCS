@@ -21,7 +21,7 @@ const About = () => {
   };
 
   return (
-    <div className="bg-[#f8fafc] text-slate-800">
+    <div className="bg-light text-slate-800 noise-bg">
 
       {/* ================= HERO ================= */}
       <section className="relative pt-32 pb-20 overflow-hidden">
@@ -31,10 +31,10 @@ const About = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-secondary font-bold uppercase tracking-widest text-sm mb-4 block">Our Story</span>
+            <span className="text-accent-blue font-bold uppercase tracking-widest text-sm mb-4 block">Our Story</span>
             <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-8">
               Empowering <br />
-              <span className="text-primary italic">Global</span> Potential.
+              <span className="text-accent-pink italic">Global</span> Potential.
             </h1>
 
             <p className="text-slate-500 text-xl mb-10 leading-relaxed max-w-lg">
@@ -44,7 +44,7 @@ const About = () => {
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/services"
-                className="bg-primary text-white px-8 py-4 rounded-full font-bold shadow-xl shadow-pink-500/20 hover:bg-primary/90 hover:scale-105 transition-all text-lg"
+                className="bg-accent-pink text-white px-8 py-4 rounded-full font-bold shadow-xl shadow-pink-500/20 hover:bg-accent-pink/90 hover:scale-105 transition-all text-lg"
               >
                 Our Services
               </Link>
@@ -63,8 +63,8 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="absolute -top-10 -right-10 w-64 h-64 bg-secondary/10 rounded-full blur-3xl -z-10"></div>
-            <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute -top-10 -right-10 w-64 h-64 bg-accent-blue/10 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-accent-pink/10 rounded-full blur-3xl -z-10"></div>
             <img
               src="https://images.unsplash.com/photo-1551434678-e076c223a692"
               alt="Team"
@@ -90,7 +90,7 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <div className="text-secondary text-2xl flex justify-center mb-4">{stat.icon}</div>
+              <div className="text-accent-blue text-2xl flex justify-center mb-4">{stat.icon}</div>
               <h2 className="text-4xl font-extrabold text-slate-900 mb-2">{stat.value}</h2>
               <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">{stat.label}</p>
             </motion.div>
@@ -112,7 +112,7 @@ const About = () => {
           </motion.div>
 
           <motion.div {...fadeInUp} className="order-1 md:order-2">
-            <span className="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">Our Vision</span>
+            <span className="text-accent-pink font-bold uppercase tracking-widest text-sm mb-4 block">Our Vision</span>
             <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-8 leading-tight">
               One Planet, Infinite Opportunities.
             </h2>
@@ -197,7 +197,7 @@ const About = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-0 group-hover:opacity-60 transition-opacity"></div>
                 </div>
                 <h4 className="text-xl font-bold text-slate-900">Expert Name</h4>
-                <p className="text-secondary font-bold text-sm uppercase tracking-wide mt-1">Senior Advisor</p>
+                <p className="text-accent-blue font-bold text-sm uppercase tracking-wide mt-1">Senior Advisor</p>
 
                 <div className="flex justify-center gap-4 mt-4 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
                   <a href="#" className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all"><FaLinkedinIn size={14} /></a>
@@ -231,7 +231,7 @@ const About = () => {
               </p>
               <Link
                 to="/our-offices"
-                className="inline-block bg-white text-dark px-10 py-5 rounded-full font-bold text-lg hover:bg-secondary hover:text-white transition-all shadow-2xl shadow-black/30"
+                className="inline-block bg-white text-dark px-10 py-5 rounded-full font-bold text-lg hover:bg-accent-blue hover:text-white transition-all shadow-2xl shadow-black/30"
               >
                 Talk to an Advisor
               </Link>
