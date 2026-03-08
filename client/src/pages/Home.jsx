@@ -21,47 +21,46 @@ const Home = () => {
     <div className="bg-light text-slate-800 noise-bg">
 
       {/* ================= HERO ================= */}
-      <section className="relative h-screen min-h-[600px] flex flex-col justify-center overflow-hidden bg-slate-950">
+      <section className="relative w-full h-screen overflow-hidden bg-slate-950 flex flex-col justify-center">
 
-        {/* Dynamic Background - Absolute and Flush */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Absolute Background - No Borders/Gaps */}
+        <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <motion.div
-            animate={{
-              scale: [1, 1.08, 1],
-            }}
+            animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-0"
+            className="w-full h-full"
           >
             <img
               src="/Hero.png"
-              alt="Study AbroadBackground"
+              alt="Background"
               className="w-full h-full object-cover opacity-60"
             />
           </motion.div>
-          {/* Enhanced Overlays for depth */}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-transparent to-slate-950/90 z-10"></div>
+          {/* Flush Overlays */}
+          <div className="absolute inset-0 bg-slate-950/40 z-10"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/20 to-transparent z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10"></div>
         </div>
 
-        {/* Content Container */}
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 flex flex-col justify-center min-h-[70vh] lg:min-h-[80vh]">
-          <div className="grid lg:grid-cols-2 items-center gap-12 xl:gap-24">
+        {/* Content - Removed internal min-height gaps */}
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 py-12">
+          <div className="grid lg:grid-cols-2 items-center gap-12">
 
-            <div className="flex flex-col items-start text-left">
+            <div className="flex flex-col items-start gap-6 md:gap-8">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="inline-flex items-center gap-3 px-5 py-2 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 mb-8"
+                className="inline-flex items-center gap-3 px-4 py-2 bg-white/5 backdrop-blur-2xl rounded-full border border-white/10"
               >
-                <span className="w-2.5 h-2.5 bg-accent-blue rounded-full animate-pulse shadow-[0_0_10px_#03A9F4]"></span>
-                <span className="text-white/90 text-xs font-bold uppercase tracking-[0.2em]">Nepal's #1 Global Partner</span>
+                <div className="w-2.5 h-2.5 bg-accent-blue rounded-full animate-pulse"></div>
+                <span className="text-white/90 text-[10px] font-bold uppercase tracking-[0.2em]">Nepal's #1 Global Partner</span>
               </motion.div>
 
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl sm:text-7xl xl:text-9xl font-black text-white leading-[0.9] tracking-tighter"
+                className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-white leading-[0.95] tracking-tighter"
               >
                 Your Global <br />
                 <span className="text-accent-blue italic">Education</span> <br />
@@ -72,29 +71,29 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="mt-8 md:mt-10 text-lg md:text-2xl text-white/60 font-medium max-w-xl leading-relaxed border-l-4 border-accent-blue/40 pl-8"
+                className="text-lg md:text-2xl text-white/70 font-medium max-w-xl leading-relaxed border-l-4 border-accent-blue/30 pl-8"
               >
-                Unlock prestigious international campuses with expert visa guidance and personalized application strategy.
+                Unlock international opportunities with expert guidance and personalized application strategies.
               </motion.p>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="mt-12 flex flex-wrap gap-5"
+                className="flex flex-wrap gap-4 mt-4"
               >
                 <Link
                   to="/services"
-                  className="group relative bg-accent-pink text-white px-10 py-5 rounded-full font-bold shadow-[0_20px_40px_rgba(233,30,99,0.3)] transition-all overflow-hidden text-lg"
+                  className="group relative bg-accent-pink text-white px-10 py-5 rounded-full font-bold shadow-2xl transition-all overflow-hidden text-lg"
                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    Start Your Path <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+                    Our Services <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
                   </span>
-                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </Link>
                 <Link
                   to="/services/career-counselling"
-                  className="px-10 py-5 rounded-full font-bold text-white border border-white/20 hover:bg-white/5 transition-all backdrop-blur-md text-lg"
+                  className="px-10 py-5 rounded-full font-bold text-white border border-white/20 hover:bg-white/5 transition-all backdrop-blur-xl text-lg"
                 >
                   Free Counselling
                 </Link>
