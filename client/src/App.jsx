@@ -62,7 +62,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-white">
+      <div className="min-h-screen flex flex-col bg-linear-to-b from-gray-50 to-white">
         <ScrollToTop />
 
         {/* Navigation for public site (only show when not authenticated) */}
