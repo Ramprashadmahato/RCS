@@ -64,56 +64,13 @@ const StudyCanada = () => {
           >
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10"></div>
             <img
-              src="https://images.unsplash.com/photo-1527842891421-42e66c703ea7?auto=format&fit=crop&q=80&w=1200"
+              src="/canada.png"
               alt="Canada Campus"
               className="rounded-[40px] shadow-2xl w-full object-cover aspect-[4/3] border-8 border-white"
             />
           </motion.div>
         </div>
       </section>
-
-      {/* TOP CANADIAN UNIVERSITIES */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-extrabold text-slate-900 mb-4">Elite Canadian Institutions</h2>
-            <p className="text-slate-500 max-w-2xl mx-auto">Discover the universities consistently ranked among the best in the world for research and student satisfaction.</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: "University of Toronto", location: "Toronto, ON", img: "1594121503102-f2a8930491a1" },
-              { name: "University of British Columbia", location: "Vancouver, BC", img: "1567427018141-05843c6ddf3b" },
-              { name: "McGill University", location: "Montreal, QC", img: "1551698618-1fed5d96559d" }
-            ].map((uni, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group rounded-[32px] overflow-hidden border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl transition-all"
-              >
-                <div className="aspect-video relative overflow-hidden">
-                  <img
-                    src={`https://images.unsplash.com/photo-${uni.img}?auto=format&fit=crop&q=80&w=800`}
-                    alt={uni.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-                <div className="p-8">
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">{uni.name}</h3>
-                  <p className="text-slate-500 flex items-center gap-2 text-sm">
-                    <FiMapPin className="text-primary" /> {uni.location}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* MAIN CONTENT + FORM */}
       <section className="py-32 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">

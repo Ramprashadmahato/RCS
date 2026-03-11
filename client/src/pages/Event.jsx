@@ -30,7 +30,7 @@ const EventsPage = () => {
       <section className="relative pt-32 pb-20 overflow-hidden bg-slate-900">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1540575861501-7ce0e220c9f5"
+            src="/event.png"
             className="w-full h-full object-cover opacity-30"
             alt="Events Header"
           />
@@ -50,7 +50,7 @@ const EventsPage = () => {
             transition={{ delay: 0.2 }}
             className="text-5xl md:text-7xl font-extrabold mt-8 leading-tight"
           >
-            Ignite Your <span className="text-primary italic">Global</span> Future
+            Ignite Your <span className="text-blue-600 italic">Global</span> Future
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -185,13 +185,13 @@ const EventsPage = () => {
 };
 
 const events = [
-  {
-    title: "Australia Information Session – La Trobe University Summit",
-    category: "Australia",
-    location: "Kathmandu Main Office",
-    date: "April 06, 2024",
-    image: "https://images.unsplash.com/photo-1523050335392-938511794244",
-  },
+ {
+  title: "Australia Information Session – La Trobe University Summit",
+  category: "Australia",
+  location: "Kathmandu Main Office",
+  date: "April 06, 2024",
+  image: "/austrilia.png",
+},
   {
     title: "Global Recruitment Fair: Charles Darwin University",
     category: "Recruitment",

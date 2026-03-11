@@ -185,7 +185,7 @@ const OurOffice = () => {
               },
               {
                 city: "Kathmandu, Nepal",
-                image: "https://images.unsplash.com/photo-1544376374-106555cc1cb4",
+                image: "/kathmandu.png",
                 address: "Putalisadak, Kathmandu, Nepal (Opposite to Kumari Bank)",
                 phone: "+977 1 443 2567",
                 email: "ktm@onestepglobaleducation.com",

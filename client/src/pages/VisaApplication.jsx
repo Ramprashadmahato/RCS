@@ -79,7 +79,7 @@ const VisaApplication = () => {
           >
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10"></div>
             <img
-              src="https://images.unsplash.com/photo-1544725176-722e035ac84d?auto=format&fit=crop&q=80&w=1200"
+              src="/visaapplication.png"
               alt="Visa and Passport"
               className="rounded-[40px] shadow-2xl w-full object-cover aspect-[4/3] border-8 border-white"
             />

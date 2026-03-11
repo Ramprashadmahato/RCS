@@ -88,50 +88,7 @@ const StudyAustralia = () => {
         </div>
       </section>
 
-      {/* ================= TOP UNIVERSITIES ================= */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <motion.h2 {...fadeInUp} className="text-4xl font-extrabold text-slate-900 mb-4">World-Class Institutions</motion.h2>
-            <motion.p {...fadeInUp} className="text-slate-500 max-w-2xl mx-auto">Explore some of Australia's highest-ranking universities renowned for research and innovation.</motion.p>
-          </div>
-
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {[
-              { name: "University of Sydney", location: "Sydney, NSW", img: "1559130464-ed17387cc723" },
-              { name: "University of Melbourne", location: "Melbourne, VIC", img: "1554508931-7f9996bd055a" },
-              { name: "University of Queensland", location: "Brisbane, QLD", img: "1523482580672-f109ba8cb9be" }
-            ].map((uni, i) => (
-              <motion.div
-                key={i}
-                variants={fadeInUp}
-                className="group rounded-[32px] overflow-hidden border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl transition-all"
-              >
-                <div className="aspect-video relative overflow-hidden">
-                  <img
-                    src={`https://images.unsplash.com/photo-${uni.img}?auto=format&fit=crop&q=80&w=800`}
-                    alt={uni.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
-                </div>
-                <div className="p-8">
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">{uni.name}</h3>
-                  <p className="text-slate-500 flex items-center gap-2 text-sm">
-                    <FiMapPin className="text-secondary" /> {uni.location}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+     
 
       {/* ================= MAIN CONTENT + FORM ================= */}
       <section className="py-32 bg-slate-50">

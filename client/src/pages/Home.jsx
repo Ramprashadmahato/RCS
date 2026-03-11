@@ -20,10 +20,9 @@ const Home = () => {
   return (
     <div className="bg-light text-slate-800 noise-bg">
 
-      {/* ================= HERO ================= */}
-      <section className="relative w-full h-screen overflow-hidden bg-slate-950 flex flex-col justify-center">
+      <section className="relative w-full h-auto sm:min-h-screen overflow-hidden bg-slate-950 flex items-center">
 
-        {/* Absolute Background - No Borders/Gaps */}
+        {/* Background */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <motion.div
             animate={{ scale: [1, 1.05, 1] }}
@@ -36,72 +35,83 @@ const Home = () => {
               className="w-full h-full object-cover opacity-60"
             />
           </motion.div>
-          {/* Flush Overlays */}
-          <div className="absolute inset-0 bg-slate-950/40 z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/20 to-transparent z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10"></div>
+
+          <div className="absolute inset-0 bg-slate-950/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/30 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
         </div>
 
-        {/* Content - Removed internal min-height gaps */}
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 py-12">
-          <div className="grid lg:grid-cols-2 items-center gap-12">
+        {/* Content */}
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 py-12 sm:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
 
-            <div className="flex flex-col items-start gap-6 md:gap-8">
+            {/* LEFT CONTENT */}
+            <div className="flex flex-col gap-4 lg:gap-6">
+
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="inline-flex items-center gap-3 px-4 py-2 bg-white/5 backdrop-blur-2xl rounded-full border border-white/10"
+                className="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-2 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 w-fit mt-10 sm:mt-10 lg:mt-10"
               >
                 <div className="w-2.5 h-2.5 bg-accent-blue rounded-full animate-pulse"></div>
-                <span className="text-white/90 text-[10px] font-bold uppercase tracking-[0.2em]">Nepal's #1 Global Partner</span>
+                <span className="text-white/90 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em]">
+                  Nepal's #1 Global Partner
+                </span>
               </motion.div>
 
+              {/* Heading */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-white leading-[0.95] tracking-tighter"
+                className="font-black text-white leading-tight tracking-tight
+            text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl"
               >
-                Your Global <br />
-                <span className="text-accent-blue italic">Education</span> <br />
-                Journey.
+                Your Global
+                <br />
+                <span className="text-accent-blue italic">Education</span>
+                <br />
+                Journey
               </motion.h1>
 
+              {/* Description */}
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg md:text-2xl text-white/70 font-medium max-w-xl leading-relaxed border-l-4 border-accent-blue/30 pl-8"
+                className="text-sm sm:text-base md:text-lg lg:text-xl text-white/70 max-w-full lg:max-w-xl leading-relaxed border-l-4 border-accent-blue/30 pl-4 sm:pl-6"
               >
                 Unlock international opportunities with expert guidance and personalized application strategies.
               </motion.p>
 
+              {/* Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="flex flex-wrap gap-4 mt-4"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4"
               >
                 <Link
                   to="/services"
-                  className="group relative bg-accent-pink text-white px-10 py-5 rounded-full font-bold shadow-2xl transition-all overflow-hidden text-lg"
+                  className="group relative bg-accent-pink text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold shadow-xl transition-all overflow-hidden text-base sm:text-lg"
                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    Our Services <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+                    Our Services
+                    <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
                   </span>
-                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </Link>
+
                 <Link
                   to="/services/career-counselling"
-                  className="px-10 py-5 rounded-full font-bold text-white border border-white/20 hover:bg-white/5 transition-all backdrop-blur-xl text-lg"
+                  className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-white border border-white/20 hover:bg-white/5 transition-all backdrop-blur-xl text-base sm:text-lg"
                 >
                   Free Counselling
                 </Link>
               </motion.div>
             </div>
 
-            {/* Visual Element - More compact for Desktop Mode on mobile */}
-            <div className="hidden lg:flex justify-end relative">
+            {/* RIGHT VISUAL - Desktop Only */}
+            <div className="hidden lg:flex justify-end">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -113,9 +123,12 @@ const Home = () => {
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   className="absolute inset-0"
                 >
-                  <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible opacity-20">
+                  <svg viewBox="0 0 100 100" className="w-full h-full opacity-20">
                     <defs>
-                      <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0 " />
+                      <path
+                        id="circlePath"
+                        d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                      />
                     </defs>
                     <text className="text-[10px] uppercase font-bold tracking-[0.2em] fill-white">
                       <textPath xlinkHref="#circlePath">
@@ -125,21 +138,20 @@ const Home = () => {
                   </svg>
                 </motion.div>
 
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="absolute inset-4 bg-white/5 backdrop-blur-3xl rounded-full border border-white/10 flex flex-col items-center justify-center p-8 text-center shadow-2xl"
-                >
+                <div className="absolute inset-4 bg-white/5 backdrop-blur-3xl rounded-full border border-white/10 flex flex-col items-center justify-center p-6 xl:p-8 text-center shadow-2xl">
                   <FaAward className="text-accent-blue text-4xl mb-3" />
                   <span className="text-white text-3xl font-black">15+</span>
-                  <span className="text-white/50 text-[10px] uppercase font-bold tracking-widest">Years of Experience</span>
-                </motion.div>
+                  <span className="text-white/50 text-xs uppercase font-bold tracking-widest">
+                    Years of Experience
+                  </span>
+                </div>
               </motion.div>
             </div>
 
           </div>
         </div>
 
-        {/* Scroll Indicator - Positioned tighter to bottom */}
+        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.4 }}
@@ -149,6 +161,7 @@ const Home = () => {
           <span className="text-[8px] uppercase tracking-[0.5em] font-bold">Scroll</span>
           <div className="w-[1px] h-8 bg-gradient-to-b from-white to-transparent"></div>
         </motion.div>
+
       </section>
 
       {/* ================= SERVICES ================= */}
@@ -235,8 +248,8 @@ const Home = () => {
             {[
               { country: "Australia", desc: "Global leader in research and quality education.", link: "/blog/australia", imgId: "1523482580672-f109ba8cb9be" },
               { country: "USA", desc: "Boundless opportunities and world-renowned degrees.", link: "/blog/usa", imgId: "1485738422979-f5c462d49f74" },
-              { country: "UK", desc: "Timeless academic excellence and prestige.", link: "/blog/uk", imgId: "1486325212027-ebad6a20d6ae" },
-              { country: "Canada", desc: "Multicultural haven with top-tier universities.", link: "/blog/canada", imgId: "1557992298-22730304040a" }
+              { country: "UK", desc: "Timeless academic excellence and prestige.", link: "/blog/uk", imgId: "1505761671935-60b3a7427bad" },
+              { country: "Canada", desc: "Multicultural haven with top-tier universities.", link: "/blog/canada", imgId: "1503614472-8c93d56e92ce" }
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -337,7 +350,7 @@ const Home = () => {
                   </div>
                 ))}
                 {/* Second loop for seamlessness */}
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, i) => (
+                {[1, 2, 3, 4, 5, 6].map((item, i) => (
                   <div
                     key={`partner-loop-${i}`}
                     className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 transform hover:scale-110"

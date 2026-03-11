@@ -38,7 +38,7 @@ const Scholarship = () => {
             transition={{ delay: 0.2 }}
             className="text-5xl md:text-7xl font-extrabold mt-8 leading-tight"
           >
-            Scholarship <span className="text-primary italic">Programs</span>
+            Scholarship <span className="text-blue-600 italic">Programs</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

@@ -31,7 +31,7 @@ const BlogUK = () => {
       <section className="relative pt-32 pb-24 overflow-hidden bg-slate-900">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1541339907198-e08756ebafe1?auto=format&fit=crop&q=80&w=2000"
+            src="/bloguk.png"
             className="w-full h-full object-cover opacity-20"
             alt="UK University"
           />

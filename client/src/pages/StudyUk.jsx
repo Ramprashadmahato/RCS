@@ -64,56 +64,13 @@ const StudyUk = () => {
           >
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-secondary/10 rounded-full blur-3xl -z-10"></div>
             <img
-              src="https://images.unsplash.com/photo-1513151239018-d45a86399344" // Oxford/Classic UK Campus
+              src="/uk.png" // Oxford/Classic UK Campus
               alt="UK University"
-              className="rounded-[40px] shadow-2xl w-full object-cover aspect-[4/3] border-8 border-white"
+              className="rounded-[40px] shadow-2xl w-full object-cover aspect-4/3 border-8 border-white"
             />
           </motion.div>
         </div>
       </section>
-
-      {/* TOP UK UNIVERSITIES */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-extrabold text-slate-900 mb-4 font-serif">Prestigious Institutions</h2>
-            <p className="text-slate-500 max-w-2xl mx-auto">Explore some of the world's most ancient and high-ranking universities in the UK.</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: "University of Oxford", location: "Oxford, UK", img: "1606216794152-de394ae08442" },
-              { name: "University of Cambridge", location: "Cambridge, UK", img: "1559863345-0cd6251ef05b" },
-              { name: "Imperial College London", location: "London, UK", img: "1533105079780-92b9be482077" }
-            ].map((uni, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group rounded-[32px] overflow-hidden border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl transition-all"
-              >
-                <div className="aspect-video relative overflow-hidden">
-                  <img
-                    src={`https://images.unsplash.com/photo-${uni.img}?auto=format&fit=crop&q=80&w=800`}
-                    alt={uni.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-                <div className="p-8">
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">{uni.name}</h3>
-                  <p className="text-slate-500 flex items-center gap-2 text-sm">
-                    <FiMapPin className="text-secondary" /> {uni.location}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* MAIN CONTENT + FORM */}
       <section className="py-32 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
