@@ -20,149 +20,168 @@ const Home = () => {
   return (
     <div className="bg-light text-slate-800 noise-bg">
 
-      <section className="relative w-full h-auto sm:min-h-screen overflow-hidden bg-slate-950 flex items-center">
+     <section className="relative w-full min-h-[100dvh] overflow-hidden bg-slate-950 flex items-center">
 
-        {/* Background */}
-        <div className="absolute inset-0 z-0 select-none pointer-events-none">
-          <motion.div
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="w-full h-full"
-          >
-            <img
-              src="/Hero.png"
-              alt="Background"
-              className="w-full h-full object-cover opacity-60"
-            />
-          </motion.div>
+  {/* Background */}
+  <div className="absolute inset-0 z-0 select-none pointer-events-none">
+    <motion.div
+      animate={{ scale: [1, 1.05, 1] }}
+      transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+      className="w-full h-full"
+    >
+      <img
+        src="/Hero.png"
+        alt="Background"
+        className="w-full h-full object-cover opacity-60"
+      />
+    </motion.div>
 
-          <div className="absolute inset-0 bg-slate-950/50"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/30 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-        </div>
+    <div className="absolute inset-0 bg-slate-950/50"></div>
+    <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/30 to-transparent"></div>
+    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+  </div>
 
-        {/* Content */}
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 py-12 sm:py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+  {/* Content */}
+  <div className="relative z-20 w-full max-w-7xl mx-auto px-6 py-16">
 
-            {/* LEFT CONTENT */}
-            <div className="flex flex-col gap-4 lg:gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-2 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 w-fit mt-10 sm:mt-10 lg:mt-10"
-              >
-                <div className="w-2.5 h-2.5 bg-accent-blue rounded-full animate-pulse"></div>
-                <span className="text-white/90 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em]">
-                  Nepal's #1 Global Partner
-                </span>
-              </motion.div>
+      {/* LEFT CONTENT */}
+      <div className="flex flex-col gap-6">
 
-              {/* Heading */}
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-black text-white leading-tight tracking-tight
-            text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl"
-              >
-                Your Global
-                <br />
-                <span className="text-accent-blue italic">Education</span>
-                <br />
-                Journey
-              </motion.h1>
-
-              {/* Description */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-sm sm:text-base md:text-lg lg:text-xl text-white/70 max-w-full lg:max-w-xl leading-relaxed border-l-4 border-accent-blue/30 pl-4 sm:pl-6"
-              >
-                Unlock international opportunities with expert guidance and personalized application strategies.
-              </motion.p>
-
-              {/* Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4"
-              >
-                <Link
-                  to="/services"
-                  className="group relative bg-accent-pink text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold shadow-xl transition-all overflow-hidden text-base sm:text-lg"
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    Our Services
-                    <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Link>
-
-                <Link
-                  to="/services/career-counselling"
-                  className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-white border border-white/20 hover:bg-white/5 transition-all backdrop-blur-xl text-base sm:text-lg"
-                >
-                  Free Counselling
-                </Link>
-              </motion.div>
-            </div>
-
-            {/* RIGHT VISUAL - Desktop Only */}
-            <div className="hidden lg:flex justify-end">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.8 }}
-                className="relative w-64 h-64 xl:w-80 xl:h-80"
-              >
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0"
-                >
-                  <svg viewBox="0 0 100 100" className="w-full h-full opacity-20">
-                    <defs>
-                      <path
-                        id="circlePath"
-                        d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-                      />
-                    </defs>
-                    <text className="text-[10px] uppercase font-bold tracking-[0.2em] fill-white">
-                      <textPath xlinkHref="#circlePath">
-                        • Success • Global • Excellence • Quality •
-                      </textPath>
-                    </text>
-                  </svg>
-                </motion.div>
-
-                <div className="absolute inset-4 bg-white/5 backdrop-blur-3xl rounded-full border border-white/10 flex flex-col items-center justify-center p-6 xl:p-8 text-center shadow-2xl">
-                  <FaAward className="text-accent-blue text-4xl mb-3" />
-                  <span className="text-white text-3xl font-black">15+</span>
-                  <span className="text-white/50 text-xs uppercase font-bold tracking-widest">
-                    Years of Experience
-                  </span>
-                </div>
-              </motion.div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
+        {/* Badge */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.4 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 hidden sm:flex"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 w-fit"
         >
-          <span className="text-[8px] uppercase tracking-[0.5em] font-bold">Scroll</span>
-          <div className="w-[1px] h-8 bg-gradient-to-b from-white to-transparent"></div>
+          <div className="w-2.5 h-2.5 bg-accent-blue rounded-full animate-pulse"></div>
+
+          <span className="text-white/90 text-xs font-bold uppercase tracking-[0.2em]">
+            Nepal's #1 Global Partner
+          </span>
         </motion.div>
 
-      </section>
+        {/* Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="font-black text-white leading-tight tracking-tight
+          text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+        >
+          Your Global
+          <br />
+          <span className="text-accent-blue italic">Education</span>
+          <br />
+          Journey
+        </motion.h1>
+
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-base sm:text-lg md:text-xl text-white/70 max-w-xl leading-relaxed border-l-4 border-accent-blue/30 pl-6"
+        >
+          Unlock international opportunities with expert guidance and personalized application strategies.
+        </motion.p>
+
+        {/* Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex flex-col sm:flex-row gap-4 pt-2"
+        >
+          <Link
+            to="/services"
+            className="group relative bg-accent-pink text-white px-8 py-4 rounded-full font-bold shadow-xl transition-all overflow-hidden text-lg"
+          >
+            <span className="relative z-10 flex items-center gap-2">
+              Our Services
+              <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </span>
+          </Link>
+
+          <Link
+            to="/services/career-counselling"
+            className="px-8 py-4 rounded-full font-bold text-white border border-white/20 hover:bg-white/5 transition-all backdrop-blur-xl text-lg"
+          >
+            Free Counselling
+          </Link>
+        </motion.div>
+
+      </div>
+
+      {/* RIGHT VISUAL */}
+      <div className="hidden lg:flex justify-end">
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="relative w-64 h-64 xl:w-80 xl:h-80"
+        >
+
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0"
+          >
+            <svg viewBox="0 0 100 100" className="w-full h-full opacity-20">
+              <defs>
+                <path
+                  id="circlePath"
+                  d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                />
+              </defs>
+
+              <text className="text-[10px] uppercase font-bold tracking-[0.2em] fill-white">
+                <textPath xlinkHref="#circlePath">
+                  • Success • Global • Excellence • Quality •
+                </textPath>
+              </text>
+
+            </svg>
+          </motion.div>
+
+          <div className="absolute inset-4 bg-white/5 backdrop-blur-3xl rounded-full border border-white/10 flex flex-col items-center justify-center p-6 xl:p-8 text-center shadow-2xl">
+
+            <FaAward className="text-accent-blue text-4xl mb-3" />
+
+            <span className="text-white text-3xl font-black">
+              15+
+            </span>
+
+            <span className="text-white/50 text-xs uppercase font-bold tracking-widest">
+              Years of Experience
+            </span>
+
+          </div>
+
+        </motion.div>
+
+      </div>
+
+    </div>
+  </div>
+
+  {/* Scroll Indicator */}
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 0.4 }}
+    transition={{ delay: 2, duration: 1 }}
+    className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 hidden sm:flex"
+  >
+    <span className="text-[8px] uppercase tracking-[0.5em] font-bold">
+      Scroll
+    </span>
+
+    <div className="w-[1px] h-8 bg-gradient-to-b from-white to-transparent"></div>
+  </motion.div>
+
+</section>
 
       {/* ================= SERVICES ================= */}
       <section className="max-w-7xl mx-auto px-6 py-24">
