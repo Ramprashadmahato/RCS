@@ -12,16 +12,32 @@ const Contact = sequelize.define('Contact', {
     allowNull: false,
     validate: { isEmail: true }
   },
+  phone: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  country: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  preferredBranch: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  studyDestination: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   subject: {
     type: DataTypes.STRING,
     allowNull: true
   },
   message: {
     type: DataTypes.TEXT,
-    allowNull: false
+    allowNull: true
   }
 }, {
-  timestamps: true // adds createdAt and updatedAt automatically
+  timestamps: true
 });
 
 module.exports = Contact;

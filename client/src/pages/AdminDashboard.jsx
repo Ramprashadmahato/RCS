@@ -1,193 +1,77 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Menu, X, User, Mail, Key, LogOut, Home, Users } from "lucide-react";
+import { User, Mail, Key, Home } from "lucide-react";
+import AdminLayout from "../components/AdminLayout";
 
 function AdminDashboard({ onLogout }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    onLogout(); // clear token from state/localStorage
-    navigate("/login"); // redirect to login page
-  };
-
-  const menuItems = [
-    {
-      name: "Manage Contacts",
-      icon: <Users className="w-5 h-5" />,
-      path: "/manage-contacts"
-    },
-    {
-      name: "Change Password",
-      icon: <Key className="w-5 h-5" />,
-      path: "/change-password"
-    }
-  ];
-
   return (
-    <div className="flex h-screen bg-gray-50">
-      {/* Mobile sidebar overlay */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        ></div>
-      )}
-
-      {/* Sidebar */}
-      <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 text-white transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
-      >
-        <div className="flex items-center justify-between p-4 border-b border-gray-700">
-          <div className="flex items-center gap-3">
-            <div className="bg-[#C6A667] p-2 rounded-lg">
-              <User className="w-6 h-6" />
+    <AdminLayout currentPage="Admin Dashboard" onLogout={onLogout}>
+      <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in duration-700">
+        {/* Hero Section */}
+        <div className="relative overflow-hidden bg-slate-900 rounded-[32px] sm:rounded-[40px] p-8 sm:p-12 text-white shadow-2xl shadow-slate-900/20">
+          <div className="absolute top-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-secondary/10 rounded-full blur-[80px] sm:blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+          <div className="relative z-10">
+            <div className="flex items-center gap-4 mb-4 sm:mb-6">
+              <div className="bg-white/10 backdrop-blur-md p-2.5 sm:p-3 rounded-2xl border border-white/10">
+                <User className="w-6 h-6 sm:w-8 sm:h-8 text-secondary" />
+              </div>
+              <span className="text-secondary font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[10px] sm:text-xs">Administrative Control</span>
             </div>
-            <div>
-              <h2 className="text-lg font-bold">Admin Panel</h2>
-              <p className="text-sm text-gray-400">OneStep Global Education</p>
-            </div>
+            <h2 className="text-3xl sm:text-5xl font-black mb-4 leading-tight">Welcome Back, <span className="text-secondary italic">Admin.</span></h2>
+            <p className="text-slate-400 text-sm sm:text-lg max-w-xl font-medium leading-relaxed">
+              Manage your global education consultancy with precision. Review inquiries, secure your access, and drive student success.
+            </p>
           </div>
-          <button
-            className="lg:hidden text-gray-400 hover:text-white"
-            onClick={() => setSidebarOpen(false)}
-          >
-            <X className="w-6 h-6" />
-          </button>
         </div>
 
-        <nav className="flex-1 p-4 space-y-2">
-          {menuItems.map((item, index) => (
-            <motion.div
-              key={item.name}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <Link
-                to={item.path}
-                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-200"
-                onClick={() => setSidebarOpen(false)}
-              >
-                {item.icon}
-                <span className="font-medium">{item.name}</span>
-              </Link>
-            </motion.div>
-          ))}
-        </nav>
-
-        <div className="p-4 border-t border-gray-700">
-          <motion.button
-            onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-4 py-3 bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <LogOut className="w-5 h-5" />
-            <span className="font-medium">Logout</span>
-          </motion.button>
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Bar */}
-        <header className="bg-white shadow-sm border-b border-gray-200 px-4 py-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <button
-                className="lg:hidden text-gray-600 hover:text-gray-900"
-                onClick={() => setSidebarOpen(true)}
-              >
-                <Menu className="w-6 h-6" />
-              </button>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">Admin Dashboard</h1>
-                <p className="text-sm text-gray-600">Welcome back, Admin</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="hidden md:flex items-center gap-2 text-gray-600">
-                <Home className="w-4 h-4" />
-                <span className="text-sm">Dashboard</span>
-              </div>
-              <div className="w-8 h-8 bg-[#C6A667] rounded-full flex items-center justify-center">
-                <User className="w-5 h-5 text-white" />
-              </div>
-            </div>
-          </div>
-        </header>
-
-        {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          {/* Manage Contacts Card */}
           <motion.div
-            className="max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            className="bg-white p-8 rounded-[32px] sm:rounded-[40px] shadow-xl shadow-slate-200/50 border border-slate-100 group hover:border-secondary transition-all duration-500"
+            whileHover={{ y: -10 }}
           >
-            <div className="bg-white rounded-xl shadow-sm p-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-[#C6A667] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <User className="w-8 h-8 text-white" />
-                </div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to Admin Dashboard</h2>
-                <p className="text-gray-600 mb-8">Select an option from the sidebar to get started</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                <motion.div
-                  className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="bg-blue-500 p-3 rounded-lg">
-                      <Mail className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900">Manage Contacts</h3>
-                      <p className="text-sm text-gray-600">View and respond to customer inquiries</p>
-                    </div>
-                  </div>
-                  <Link
-                    to="/manage-contacts"
-                    className="mt-4 inline-block text-blue-600 hover:text-blue-800 font-medium text-sm"
-                  >
-                    Go to Contacts →
-                  </Link>
-                </motion.div>
-
-                <motion.div
-                  className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="bg-purple-500 p-3 rounded-lg">
-                      <Key className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900">Change Password</h3>
-                      <p className="text-sm text-gray-600">Update your account password</p>
-                    </div>
-                  </div>
-                  <Link
-                    to="/change-password"
-                    className="mt-4 inline-block text-purple-600 hover:text-purple-800 font-medium text-sm"
-                  >
-                    Change Password →
-                  </Link>
-                </motion.div>
-              </div>
+            <div className="bg-slate-50 w-16 h-16 rounded-[22px] flex items-center justify-center mb-6 sm:mb-8 group-hover:bg-secondary/10 transition-colors">
+              <span className="text-slate-900 group-hover:text-secondary transition-colors">
+                <Mail className="w-8 h-8" />
+              </span>
             </div>
+            <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-3 tracking-tight">Inquiry Management</h3>
+            <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8 font-medium">
+              Centralized hub for all student leads. Track, respond, and organize global consultancy requests from the website.
+            </p>
+            <Link
+              to="/manage-contacts"
+              className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-2xl font-bold hover:bg-secondary transition-all duration-300 shadow-lg shadow-slate-900/10"
+            >
+              Go to Contacts <Home className="w-4 h-4 text-secondary" />
+            </Link>
           </motion.div>
-        </main>
+
+          {/* Change Password Card */}
+          <motion.div
+            className="bg-white p-8 rounded-[32px] sm:rounded-[40px] shadow-xl shadow-slate-200/50 border border-slate-100 group hover:border-rose-400 transition-all duration-500"
+            whileHover={{ y: -10 }}
+          >
+            <div className="bg-slate-50 w-16 h-16 rounded-[22px] flex items-center justify-center mb-6 sm:mb-8 group-hover:bg-rose-50 transition-colors">
+              <span className="text-slate-900 group-hover:text-rose-500 transition-colors">
+                <Key className="w-8 h-8" />
+              </span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-3 tracking-tight">Account Security</h3>
+            <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8 font-medium">
+              Maintain the integrity of your admin access. Update your credentials regularly to ensure top-tier platform security.
+            </p>
+            <Link
+              to="/change-password"
+              className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-2xl font-bold hover:bg-rose-500 transition-all duration-300 shadow-lg shadow-slate-900/10"
+            >
+              Secure Account <Key className="w-4 h-4 text-rose-400" />
+            </Link>
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </AdminLayout>
   );
 }
 

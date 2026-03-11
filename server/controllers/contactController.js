@@ -5,10 +5,38 @@ const nodemailer = require('nodemailer');
 // Create new contact (public form submission)
 exports.createContact = async (req, res) => {
   try {
-    const { name, email, subject, message } = req.body;
-    const contact = await Contact.create({ name, email, subject, message });
+    const {
+      name = 'Anonymous',
+      email = 'no-email@rcs.com',
+      phone = 'N/A',
+      country = 'Unknown',
+      preferredBranch = 'General',
+      studyDestination = 'General Inquiry',
+      subject = 'Website Inquiry',
+      message: msg = ''
+    } = req.body;
+
+    // Log incoming data for debugging
+    console.log('Incoming contact submission:', req.body);
+
+    const contact = await Contact.create({
+      name,
+      email,
+      phone,
+      country,
+      preferredBranch,
+      studyDestination,
+      subject: subject || `Website Inquiry`,
+      message: msg || `Inquiry from ${name} about ${studyDestination}`
+    });
     res.status(201).json(contact);
   } catch (err) {
+    console.error('Contact creation error:', err);
+    // If it's a Sequelize validation error, provide details
+    if (err.name === 'SequelizeValidationError' || err.name === 'SequelizeUniqueConstraintError') {
+      const messages = err.errors.map(e => e.message);
+      return res.status(400).json({ error: messages.join(', ') });
+    }
     res.status(400).json({ error: err.message });
   }
 };

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FiMail, FiPhone, FiChevronDown, FiUser, FiGlobe } from "react-icons/fi";
 import { motion } from "framer-motion";
+import axios from "axios";
+import emailjs from "@emailjs/browser";
 
 const InquiryForm = ({
     title = "Register Now",
@@ -17,6 +19,8 @@ const InquiryForm = ({
         studyDestination: defaultDestination,
         terms: false,
     });
+    const [loading, setLoading] = useState(false);
+    const [status, setStatus] = useState({ type: "", message: "" });
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -28,10 +32,88 @@ const InquiryForm = ({
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Form Submitted:", formData);
-        alert("Thank you for your inquiry! Our team will contact you shortly.");
+        setLoading(true);
+        setStatus({ type: "", message: "" });
+
+        const apiData = {
+            name: formData.fullName,
+            email: formData.email,
+            phone: formData.phone,
+            country: formData.country,
+            preferredBranch: formData.preferredBranch,
+            studyDestination: formData.studyDestination,
+            subject: `New Inquiry from ${formData.fullName}`,
+            message: `Student interested in ${formData.studyDestination}. Location: ${formData.country}, Branch: ${formData.preferredBranch}, Phone: ${formData.phone}`
+        };
+
+        try {
+            // 1. Send to Backend
+            const baseUrl = import.meta.env.VITE_API_BASE_URL?.endsWith('/')
+                ? import.meta.env.VITE_API_BASE_URL
+                : `${import.meta.env.VITE_API_BASE_URL}/`;
+            const endpoint = "api/contacts";
+            await axios.post(`${baseUrl}${endpoint}`, apiData);
+
+            // 2. Send via EmailJS
+            const emailTemplateParams = {
+                name: formData.fullName,
+                email: formData.email,
+                from_name: formData.fullName,
+                from_email: formData.email,
+                phone: formData.phone,
+                country: formData.country,
+                branch: formData.preferredBranch,
+                destination: formData.studyDestination,
+                subject: `New Inquiry - ${formData.studyDestination}`,
+                message: `You have a new student inquiry. \n\nDetails: \nDestination: ${formData.studyDestination} \nLocation: ${formData.country} \nBranch: ${formData.preferredBranch} \nPhone: ${formData.phone}`,
+                to_name: "RCS Admin",
+            };
+
+            // Log for debugging (Remove after testing)
+            console.log("EmailJS Params:", emailTemplateParams);
+            console.log("Service ID:", import.meta.env.VITE_EMAILJS_SERVICE_ID);
+
+            await emailjs.send(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_ont43of",
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_fgvx0yl",
+                emailTemplateParams,
+                import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "LGjBn8uwuBDOCaNP2"
+            ).then((res) => {
+                console.log("EmailJS Success:", res.status, res.text);
+            }).catch((err) => {
+                console.error("EmailJS Failed:", err);
+                console.error("IDs used:", {
+                    service: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                    template: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                    public: import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+                });
+            });
+
+            setStatus({
+                type: "success",
+                message: "Thank you for your inquiry! Our team will contact you shortly."
+            });
+            setFormData({
+                fullName: "",
+                email: "",
+                phone: "",
+                country: "",
+                preferredBranch: "",
+                studyDestination: "",
+                terms: false,
+            });
+        } catch (error) {
+            console.error("Submission error:", error);
+            const errorMessage = error.response?.data?.error || "Something went wrong. Please try again later.";
+            setStatus({
+                type: "error",
+                message: errorMessage
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -40,12 +122,12 @@ const InquiryForm = ({
             animate={{ opacity: 1, y: 0 }}
             className="bg-white rounded-[40px] shadow-2xl shadow-slate-200/50 overflow-hidden border border-slate-100 text-slate-900"
         >
-            <div className="bg-slate-900 p-8 text-white">
+            <div className="bg-slate-900 p-6 sm:p-8 text-white">
                 <h2 className="text-2xl font-black mb-2 leading-tight">{title}</h2>
                 <p className="text-slate-400 text-sm font-medium">{subtitle}</p>
             </div>
 
-            <div className="p-8 bg-slate-50">
+            <div className="p-5 sm:p-8 bg-slate-50">
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-4">
                         {/* Full Name */}
@@ -86,7 +168,7 @@ const InquiryForm = ({
                         <div>
                             <label className="text-sm font-bold text-slate-700 uppercase tracking-wider ml-1">Phone Number</label>
                             <div className="flex mt-2 gap-3">
-                                <div className="flex items-center px-4 bg-white border border-slate-200 rounded-2xl text-slate-600 font-bold shadow-sm">
+                                <div className="flex items-center px-4 bg-white border border-slate-200 rounded-2xl text-slate-600 font-bold shadow-sm text-sm sm:text-base">
                                     +977
                                 </div>
                                 <div className="relative flex-1">
@@ -183,11 +265,18 @@ const InquiryForm = ({
                         <span>I agree to the <a href="#" className="underline hover:text-primary transition-colors">Terms and Conditions</a></span>
                     </div>
 
+                    {status.message && (
+                        <div className={`p-4 rounded-2xl text-sm font-bold ${status.type === "success" ? "bg-green-50 text-green-600 border border-green-100" : "bg-red-50 text-red-600 border border-red-100"}`}>
+                            {status.message}
+                        </div>
+                    )}
+
                     <button
                         type="submit"
-                        className="w-full bg-primary hover:bg-primary/90 text-white py-5 rounded-2xl font-extrabold text-lg shadow-xl shadow-pink-500/20 transform hover:-translate-y-1 transition-all"
+                        disabled={loading}
+                        className={`w-full py-5 rounded-2xl font-extrabold text-lg shadow-xl shadow-pink-500/20 transform hover:-translate-y-1 transition-all ${loading ? "bg-slate-400 cursor-not-allowed" : "bg-primary hover:bg-primary/90 text-white"}`}
                     >
-                        {buttonText}
+                        {loading ? "Sending..." : buttonText}
                     </button>
                 </form>
             </div>

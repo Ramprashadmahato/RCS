@@ -22,7 +22,7 @@ const Home = () => {
 
       {/* Herosection */}
 
-      <section className="relative w-full min-h-screen overflow-hidden bg-slate-950 flex items-center">
+      <section className="relative w-full min-h-[80dvh] lg:min-h-screen overflow-hidden bg-slate-950 flex items-center">
 
         {/* Background */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
@@ -44,7 +44,7 @@ const Home = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 py-24 lg:py-16">
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 py-12 sm:py-20 lg:py-10">
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
@@ -470,3 +470,4 @@ const Home = () => {
 };
 
 export default Home;
+

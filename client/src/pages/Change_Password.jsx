@@ -5,10 +5,10 @@ import { Key, Eye, EyeOff, CheckCircle, AlertCircle } from "lucide-react";
 import AdminLayout from "../components/AdminLayout";
 
 function ChangePassword({ token, onLogout }) {
-  const [formData, setFormData] = useState({ 
-    oldPassword: "", 
-    newPassword: "", 
-    confirmPassword: "" 
+  const [formData, setFormData] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: ""
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -49,19 +49,19 @@ function ChangePassword({ token, onLogout }) {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     setLoading(true);
     setError("");
     setSuccess("");
-    
+
     try {
       await apiClient.post("/api/auth/change-password", {
         oldPassword: formData.oldPassword,
         newPassword: formData.newPassword
       });
-      
+
       setSuccess("Password changed successfully!");
       setFormData({ oldPassword: "", newPassword: "", confirmPassword: "" });
     } catch (err) {
@@ -73,158 +73,151 @@ function ChangePassword({ token, onLogout }) {
 
   return (
     <AdminLayout currentPage="Change Password" onLogout={onLogout}>
-      <div className="p-6">
-        <div className="max-w-2xl mx-auto">
-        <motion.div 
-          className="bg-white rounded-xl shadow-sm p-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-[#C6A667] rounded-full flex items-center justify-center mx-auto mb-4">
-              <Key className="w-8 h-8 text-white" />
+      <div className="p-4 sm:p-12 bg-[#FBFDFF] min-h-screen">
+        <div className="max-w-xl mx-auto">
+          <motion.div
+            className="bg-white rounded-[32px] sm:rounded-[40px] shadow-2xl shadow-slate-200/50 p-6 sm:p-12 border border-slate-100"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="text-center mb-10">
+              <div className="w-20 h-20 bg-slate-900 rounded-[28px] flex items-center justify-center mx-auto mb-6 shadow-xl shadow-slate-900/10">
+                <Key className="w-10 h-10 text-secondary" />
+              </div>
+              <h1 className="text-3xl font-black text-slate-900 tracking-tight">Security Credentials</h1>
+              <p className="text-slate-500 font-medium mt-2">Protect your administrative access with a strong password.</p>
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Change Password</h1>
-            <p className="text-gray-600">Update your account password for security</p>
-          </div>
 
-          {error && (
-            <motion.div 
-              className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
-              <span className="text-red-700">{error}</span>
-            </motion.div>
-          )}
+            {error && (
+              <motion.div
+                className="mb-8 p-5 bg-rose-50 border border-rose-100 rounded-2xl flex items-center gap-4 text-rose-600"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+              >
+                <AlertCircle className="w-6 h-6 flex-shrink-0" />
+                <span className="font-bold text-sm tracking-wide">{error}</span>
+              </motion.div>
+            )}
 
-          {success && (
-            <motion.div 
-              className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-              <span className="text-green-700">{success}</span>
-            </motion.div>
-          )}
+            {success && (
+              <motion.div
+                className="mb-8 p-5 bg-emerald-50 border border-emerald-100 rounded-2xl flex items-center gap-4 text-emerald-600"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+              >
+                <CheckCircle className="w-6 h-6 flex-shrink-0" />
+                <span className="font-bold text-sm tracking-wide">{success}</span>
+              </motion.div>
+            )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label className="block text-gray-700 mb-2 font-medium">Current Password *</label>
-              <div className="relative">
-                <input 
-                  name="oldPassword" 
-                  type={showOldPassword ? "text" : "password"}
-                  value={formData.oldPassword}
-                  onChange={handleChange}
-                  placeholder="Enter current password"
-                  className="w-full p-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C6A667] focus:border-transparent transition"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowOldPassword(!showOldPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                >
-                  {showOldPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="space-y-3">
+                <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Current Password</label>
+                <div className="relative">
+                  <input
+                    name="oldPassword"
+                    type={showOldPassword ? "text" : "password"}
+                    value={formData.oldPassword}
+                    onChange={handleChange}
+                    placeholder="••••••••"
+                    className="w-full p-5 pr-14 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-secondary/10 focus:border-secondary focus:bg-white outline-none transition-all font-medium text-slate-900"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowOldPassword(!showOldPassword)}
+                    className="absolute right-5 top-1/2 transform -translate-y-1/2 text-slate-300 hover:text-secondary transition-colors"
+                  >
+                    {showOldPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">New Secure Password</label>
+                <div className="relative">
+                  <input
+                    name="newPassword"
+                    type={showNewPassword ? "text" : "password"}
+                    value={formData.newPassword}
+                    onChange={handleChange}
+                    placeholder="••••••••"
+                    className="w-full p-5 pr-14 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-secondary/10 focus:border-secondary focus:bg-white outline-none transition-all font-medium text-slate-900"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowNewPassword(!showNewPassword)}
+                    className="absolute right-5 top-1/2 transform -translate-y-1/2 text-slate-300 hover:text-secondary transition-colors"
+                  >
+                    {showNewPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Confirm New Password</label>
+                <div className="relative">
+                  <input
+                    name="confirmPassword"
+                    type={showConfirmPassword ? "text" : "password"}
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    placeholder="••••••••"
+                    className="w-full p-5 pr-14 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-secondary/10 focus:border-secondary focus:bg-white outline-none transition-all font-medium text-slate-900"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-5 top-1/2 transform -translate-y-1/2 text-slate-300 hover:text-secondary transition-colors"
+                  >
+                    {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                </div>
+              </div>
+
+              <motion.button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-lg shadow-xl shadow-slate-900/20 hover:bg-secondary transform transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                whileHover={{ y: -4 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {loading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    Updating Security...
+                  </>
+                ) : (
+                  <>
+                    <CheckCircle className="w-5 h-5" />
+                    Update Password
+                  </>
+                )}
+              </motion.button>
+            </form>
+
+            <div className="mt-12 pt-8 border-t border-slate-50">
+              <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Security Guidelines</h3>
+              <div className="grid grid-cols-1 gap-3">
+                {[
+                  "Minimum 6 characters",
+                  "Include special characters",
+                  "Unique from previous passwords"
+                ].map((tip, i) => (
+                  <div key={i} className="flex items-center gap-3 text-sm font-bold text-slate-500">
+                    <CheckCircle className="w-4 h-4 text-secondary" />
+                    {tip}
+                  </div>
+                ))}
               </div>
             </div>
-            
-            <div>
-              <label className="block text-gray-700 mb-2 font-medium">New Password *</label>
-              <div className="relative">
-                <input 
-                  name="newPassword" 
-                  type={showNewPassword ? "text" : "password"}
-                  value={formData.newPassword}
-                  onChange={handleChange}
-                  placeholder="Enter new password"
-                  className="w-full p-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C6A667] focus:border-transparent transition"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowNewPassword(!showNewPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                >
-                  {showNewPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
-              </div>
-              <p className="text-sm text-gray-500 mt-1">Must be at least 6 characters</p>
-            </div>
-            
-            <div>
-              <label className="block text-gray-700 mb-2 font-medium">Confirm New Password *</label>
-              <div className="relative">
-                <input 
-                  name="confirmPassword" 
-                  type={showConfirmPassword ? "text" : "password"}
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  placeholder="Confirm new password"
-                  className="w-full p-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C6A667] focus:border-transparent transition"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                >
-                  {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
-              </div>
-            </div>
-            
-            <motion.button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-gradient-to-r from-[#C6A667] to-[#a88c4f] text-white py-3 rounded-lg font-bold hover:from-[#a88c4f] hover:to-[#8a7237] transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              {loading ? (
-                <>
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Changing Password...
-                </>
-              ) : (
-                <>
-                  <Key className="w-5 h-5" />
-                  Change Password
-                </>
-              )}
-            </motion.button>
-          </form>
-
-          <div className="mt-8 pt-6 border-t border-gray-200">
-            <h3 className="font-bold text-gray-900 mb-3">Password Security Tips</h3>
-            <ul className="text-sm text-gray-600 space-y-1">
-              <li className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                Use at least 6 characters
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                Include uppercase and lowercase letters
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                Add numbers and special characters
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                Don't reuse passwords from other accounts
-              </li>
-            </ul>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
-    </div>
-  </AdminLayout>
+    </AdminLayout>
   );
 }
 
